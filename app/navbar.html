@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Navbar</title>
+    <!-- 将 Tailwind CSS 加入头 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 添加 Material-UI 示例 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-ui/1.8.2/css/material.min.css">
+</head>
+<body>
+    <div id="navbar" class=" bg-white border-l-r bg-opacity-50 backdrop-blur-xl p-4">
+        <!-- Logo -->
+        <div class="flex justify-center space-x-3">
+            <a href="#" class="text-blue-600 hover:text-blue-800 transition-colors">Logo</a>
+        </div>
+
+        <!-- 中文 logo -->
+        <div class="flex flex-col" data-aos="fade-up"></div>
+
+        <!-- Navbar Title -->
+        <h1 class="mt-5 text-2xl font-bold bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text
+text-transparent">Brand</h1>
+
+        <!-- Navbar Subtitle -->
+        <p class="text-gray-700 mt-2">Website: www.example.com</p>
+
+        <!-- Logo on Left -->
+        <div class="flex justify-center space-x-2">
+            <a href="#" class="text-blue-600 hover:text-blue-800 transition-colors">Logo</a>
+        </div>
+
+        <!-- Logo on Right -->
+        <div class="flex justify-center space-x-2">
+            <a href="#" class="text-blue-600 hover:text-blue-800 transition-colors">Logo</a>
+        </div>
+
+        <!-- Navbar Button -->
+        <button @click="close" class="bg-white p-3 rounded-md text-lg font-semibold shadow-md hover:bg-gray-100
+transition-colors">
+            Close
+        ></button>
+    </div>
+
+    <script>
+        function close() {
+            document.getElementById('navbar').classList.add('open');
+            document.getElementById('navbar').classList.remove('close');
+        }
+    </script>
+</body>
+</html>

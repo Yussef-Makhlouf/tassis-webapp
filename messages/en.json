@@ -1,0 +1,201 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "We Create for You!",
+    "subtitle": "Your First Home",
+    "description": "Stable progress aligned with Vision 2030"
+  },
+  "features": {
+    "vision": {
+      "title": "Our Vision",
+      "description": "To be pioneers in real estate development"
+    },
+    "mission": {
+      "title": "Our Mission",
+      "description": "We strive to provide the best real estate services"
+    },
+    "goals": {
+      "title": "Our Goals",
+      "description": "We aim to be the first choice"
+    }
+  },
+  "footer": {
+    "newsletter": "Newsletter",
+    "emailPlaceholder": "Email Address",
+    "subscribe": "Subscribe Now",
+    "emailError": "Please enter a valid email address",
+    "thankYou": "Thank You!",
+    "subscribeSuccess": "Successfully subscribed to the newsletter",
+    "companyName": "Tasis Albina Real Estate Development Company",
+    "companyDescription": "Tasis Albina delivers its products to its customers as a result of its continuous journey towards achieving excellence in modern sustainable housing, fulfilling needs and contributing to achieving an integrated and sustainable life.",
+    "quickLinks": "Quick Links",
+    "commercialRecord": "Commercial Record",
+    "contactUs": "Contact Us",
+    "mainNumber": "Main Number",
+    "email": "Email",
+    "address": "Riyadh - Al Fayha District",
+    "country": "Saudi Arabia",
+    "copyright": "All rights reserved for Tasis Albina Real Estate Development Company",
+    "madeBy": "Crafted with precision by Tarmiz Tech"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone Number",
+    "message": "Message",
+    "send": "Send",
+    "sending": "Sending...",
+    "successMessage": "Your message has been sent successfully",
+    "errorMessage": "An error occurred while sending your message",
+    "validation": {
+      "senderName": "Name is required and must be between 2-50 characters",
+      "senderEmail": "Invalid email address",
+      "phone": "Invalid phone number",
+      "messageContent": "Message is required and must be less than 500 characters"
+    }
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Read the latest articles",
+    "viewAll": "View All",
+    "readMore": "Read More",
+    "noPosts": "No Posts",
+    "noPostsDescription": "There are no posts to display",
+    "searchPlaceholder": "Search articles...",
+    "loading": "Loading...",
+    "newLabel": "New",
+    "views": "views",
+    "dateLocale": "en-US",
+    "categories": {
+      "all": "All",
+      "realEstate": "Real Estate",
+      "projects": "Projects",
+      "development": "Development"
+    },
+    "blogDetails": "Blog Details",
+    "home": "Home",
+    "blog": "Blog",
+    "details": "Details",
+    "recentPosts": "Recent Posts",
+
+    "newsletter": "Newsletter",
+    "newsletterDesc": "Subscribe now to receive the latest real estate news and updates",
+    "emailPlaceholder": "Email Address",
+    "subscribe": "Subscribe",
+    "subscribeSuccess": "Subscribed Successfully!",
+    "subscribeMessage": "Thank you for subscribing to our newsletter. We will send the latest updates to your email.",
+    "ok": "OK"
+  },
+  "projects": {
+    "sectionTitle": "Our Projects",
+    "sectionDescription": "Our business strategy is based on innovation and adaptability. Starting from Riyadh, we strategically focus our efforts on a diverse portfolio of projects, including residential, commercial, hospitality, retail, tourist destinations, and public projects, reflecting the multi-faceted nature of our brand.",
+    "viewProject": "View Project",
+    "viewMore": "View More",
+    "project1": {
+      "title": "Majalat 67 - Al Rimal District"
+    },
+    "project2": {
+      "title": "Majalat 62 - Al Manar District"
+    },
+    "project3": {
+      "title": "Majalat 55 - Hittin District"
+    },
+    "project4": {
+      "title": "Majalat 48 - Al Narjis District"
+    },
+    "project5": {
+      "title": "Majalat 43 - Al Yasmin District"
+    },
+    "project6": {
+      "title": "Majalat 39 - Al Malqa District"
+    }
+  },
+  "about": {
+    "title": "About Us",
+    "description": "At Tasis Albina Real Estate Development Company, we strive to provide innovative real estate solutions that combine quality and transparency to meet our customers' needs. Our company was founded on solid values and extensive experience in real estate development, to be your ideal partner in achieving your residential and investment dreams.",
+    "imageAlt": "Company Image",
+    "statistics": {
+      "title": "Statistics",
+      "landArea": "Land Areas",
+      "projects": "Projects",
+      "housingUnits": "Housing Units",
+      "totalArea": "Total Land Area"
+    }
+  },
+  "home": {
+    "title": "Welcome to Our Website",
+    "description": "Discover the best real estate services",
+    "readMore": "Read More"
+  },
+  "services": {
+    "afterSaleTitle": "Our Key After-Sale Services",
+    "freeServices": "Free services provided for the first year",
+    "items": {
+      "rental": "Free electronic property rental service and connectivity",
+      "communication": "Continuous communication between residents and project supervisor",
+      "maintenance": "Regular maintenance of elevators, corridors, and lighting",
+      "water": "Water bill payment and tank maintenance",
+      "staff": "Regular payment of security guards and workers' salaries",
+      "electricity": "Committed payment of electricity service bills"
+    }
+  },
+  "testimonials": {
+    "title": "Our Clients' Testimonials",
+    "loading": "Loading...",
+    "description": "Read what our clients have to say about us"
+  },
+  "partners": {
+    "title": "Our Partners",
+    "partners": {
+      "jotun": "Jotun",
+      "partner2": "Partner 2",
+      "sabic": "SABIC",
+      "rajhiSteel": "Rajhi Steel",
+      "elevators": "Elevators",
+      "grohe": "Grohe",
+      "partner7": "Partner 7",
+      "tamweel": "Tamweel",
+      "dalton": "Dalton",
+      "realEstate": "Real Estate",
+      "partner11": "Partner 11",
+      "realty": "Realty",
+      "partner13": "Partner 13"
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "loading": "Loading..."
+  },
+  "404": {
+    "title": "Page Not Found",
+    "description": "The page you are looking for does not exist",
+    "back": "Back to Home"
+  },
+  "aboutPage": {
+    "hero": {
+      "title": "About Us"
+    },
+    "section1": {
+      "title": "About Us",
+      "imageAlt": "About the Company",
+      "description": "At Tasis Albina Real Estate Development Company, we strive to provide innovative real estate solutions that combine quality and transparency to meet our customers' needs. Our company was founded on solid values and extensive experience in real estate development, to be your ideal partner in achieving your residential and investment dreams."
+    },
+    "section2": {
+      "title": "Our Vision",
+      "imageAlt": "Our Vision",
+      "description": "We believe that real estate is not just buildings, but the foundation of a balanced and sustainable life. We work to deliver high-value projects with distinctive designs that meet our clients' aspirations."
+    },
+    "section3": {
+      "title": "Our Mission",
+      "imageAlt": "Our Mission",
+      "description": "To become the first name in the real estate market, relying on service excellence, design innovation, and full commitment to customer expectations."
+    }
+  }
+}
