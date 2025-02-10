@@ -159,77 +159,89 @@
 // }
 
 'use client'
-import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Autoplay } from 'swiper/modules';
-import { useRef, useState, useEffect } from 'react';
-import { useTranslations } from 'next-intl';
-import { useLocale } from 'next-intl';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import Image from 'next/image';
+import { ChevronLeft, ChevronRight, Star } from 'lucide-react'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Navigation, Autoplay } from 'swiper/modules'
+import { useRef, useState, useEffect } from 'react'
+import { useTranslations } from 'next-intl'
+import { useLocale } from 'next-intl'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import Image from 'next/image'
 
 interface Review {
-  _id: string;
-  name: string;
-  description: string;
-  country: string;
-  rate: number;
+  _id: string
+  name: string
+  description: string
+  country: string
+  rate: number
   Image: {
-    secure_url: string;
-    public_id: string;
-  };
+    secure_url: string
+    public_id: string
+  }
 }
 
 interface ReviewResponse {
-  message: string;
-  reviews: Review[];
+  message: string
+  reviews: Review[] | undefined
 }
 
 export default function Testimonials() {
-  const t = useTranslations('testimonials');
-  const locale = useLocale();
-  const isRTL = locale === 'ar';
-  
-  const prevRef = useRef<HTMLButtonElement>(null);
-  const nextRef = useRef<HTMLButtonElement>(null);
-  const [reviews, setReviews] = useState<Review[]>([]);
-  const [loading, setLoading] = useState(true);
+  const t = useTranslations('testimonials')
+  const locale = useLocale()
+  const isRTL = locale === 'ar'
+
+  const prevRef = useRef<HTMLButtonElement>(null)
+  const nextRef = useRef<HTMLButtonElement>(null)
+  const [reviews, setReviews] = useState<Review[]>([]) 
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await fetch('http://localhost:8080/review/');
-        const data: ReviewResponse = await response.json();
-        setReviews(data.reviews);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching reviews:', error);
-        setLoading(false);
-      }
-    };
+        const apiUrl =
+          locale === 'ar'
+            ? 'http://localhost:8080/review/ar'
+            : 'http://localhost:8080/review/en'
 
-    fetchReviews();
-  }, []);
+        const response = await fetch(apiUrl)
+        const data: ReviewResponse = await response.json()
+
+        // Check if 'reviews' exists and is an array
+        if (Array.isArray(data.reviews)) {
+          setReviews(data.reviews)
+        } else {
+          console.error('Invalid reviews data:', data)
+        }
+
+        setLoading(false)
+      } catch (error) {
+        console.error('Error fetching reviews:', error)
+        setLoading(false)
+      }
+    }
+
+    fetchReviews()
+  }, [locale])
 
   if (loading) {
     return (
-      <section className="relative py-24">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">{t('loading')}</div>
+          <div className="text-center">{t('loading')}</div>
         </div>
       </section>
-    );
+    )
   }
 
   return (
-    <section className="relative py-24" dir={isRTL ? 'rtl' : 'ltr'}>
+    <section className="py-20 bg-white" dir={isRTL ? 'rtl' : 'ltr'}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-[40px] font-bold text-[#20284D] leading-[75px] mb-4">
+          <h2 className="text-4xl font-bold text-[#20284D] mb-4 font-cairo drop-shadow-lg">
             {t('title')}
-            <div className="w-[224px] h-1 bg-[#AA9554] mx-auto mt-2 shadow-[0px_4px_4px_rgba(0,0,0,0.25)]" />
           </h2>
+          <div className="w-[278px] h-1 bg-[#AA9554] mx-auto shadow-md" />
         </div>
 
         <div className="relative max-w-[1400px] mx-auto">
@@ -254,11 +266,11 @@ export default function Testimonials() {
             }}
             onInit={(swiper) => {
               // @ts-ignore
-              swiper.params.navigation.prevEl = prevRef.current;
+              swiper.params.navigation.prevEl = prevRef.current
               // @ts-ignore
-              swiper.params.navigation.nextEl = nextRef.current;
-              swiper.navigation.init();
-              swiper.navigation.update();
+              swiper.params.navigation.nextEl = nextRef.current
+              swiper.navigation.init()
+              swiper.navigation.update()
             }}
           >
             {reviews.map((review) => (
@@ -305,16 +317,24 @@ export default function Testimonials() {
             ref={prevRef}
             className="absolute left-[-45px] top-1/2 transform -translate-y-1/2 w-[69px] h-[68px] border-3 border-[#20284D] rounded-full flex items-center justify-center shadow-[0px_4px_4px_rgba(0,0,0,0.25)] bg-white hover:bg-gray-50 transition-colors z-10"
           >
-            {isRTL ? <ChevronRight className="w-10 h-10 text-[#001A72]" /> : <ChevronLeft className="w-10 h-10 text-[#001A72]" />}
+            {isRTL ? (
+              <ChevronRight className="w-10 h-10 text-[#001A72]" />
+            ) : (
+              <ChevronLeft className="w-10 h-10 text-[#001A72]" />
+            )}
           </button>
           <button
             ref={nextRef}
             className="absolute right-[-45px] top-1/2 transform -translate-y-1/2 w-[69px] h-[68px] border-3 border-[#20284D] rounded-full flex items-center justify-center shadow-[0px_4px_4px_rgba(0,0,0,0.25)] bg-white hover:bg-gray-50 transition-colors z-10"
           >
-            {isRTL ? <ChevronLeft className="w-10 h-10 text-[#001A72]" /> : <ChevronRight className="w-10 h-10 text-[#001A72]" />}
+            {isRTL ? (
+              <ChevronLeft className="w-10 h-10 text-[#001A72]" />
+            ) : (
+              <ChevronRight className="w-10 h-10 text-[#001A72]" />
+            )}
           </button>
         </div>
       </div>
     </section>
-  );
+  )
 }

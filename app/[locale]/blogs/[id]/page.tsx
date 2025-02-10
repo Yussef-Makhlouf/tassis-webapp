@@ -40,6 +40,7 @@ export default function BlogPost() {
   const [showModal, setShowModal] = useState(false);
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null); // Specify type for error
   const [blog, setBlog] = useState<BlogData | null>(null);
   const params = useParams();
   const t = useTranslations('blog');
@@ -74,11 +75,33 @@ export default function BlogPost() {
     fetchRecentBlogs();
   }, [params?.id]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setShowModal(true);
-    setEmail("");
-  };
+    setError(error); // Reset error before request
+
+    try {
+      const response = await fetch("http://localhost:8080/newsletter/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Something went wrong!");
+      }
+
+      setShowModal(true); // Show modal on success
+      setEmail(""); // Clear input field on success
+    }
+     catch (err) {  // Ensure error is properly typed
+      // setError(err);
+      console.log(err);
+    }
+  }
 
   if (loading) {
     return (

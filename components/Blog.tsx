@@ -127,6 +127,7 @@ import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 
 interface Blog {
   _id: string;
@@ -150,13 +151,19 @@ export default function Blog() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
   const t = useTranslations('blog');
+  const locale = useLocale(); // Get current locale
 
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await fetch('http://localhost:8080/blog?page=1&size=3');
+        // Check the locale and select the appropriate API endpoint
+        const apiUrl = locale === 'ar' 
+          ? 'http://localhost:8080/blog/ar' 
+          : 'http://localhost:8080/blog/en';
+
+        const response = await fetch(apiUrl);
         const data: BlogResponse = await response.json();
-        setBlogs(data.blogs.slice(0, 3));
+        setBlogs(data.blogs.slice(0, 3)); // Display only the first 3 blogs
         setLoading(false);
       } catch (error) {
         console.error('Error fetching blogs:', error);
@@ -165,7 +172,7 @@ export default function Blog() {
     };
 
     fetchBlogs();
-  }, []);
+  }, [locale]); // Re-fetch blogs when locale changes
 
   if (loading) {
     return (
@@ -212,7 +219,7 @@ export default function Blog() {
                 {/* Meta Info */}
                 <div className="flex justify-between items-center mb-6 text-base text-gray-600">
                   <span dir="ltr" className="font-medium">
-                    {new Date(blog.createdAt).toLocaleDateString('ar-SA')}
+                    {new Date(blog.createdAt).toLocaleDateString(locale === 'ar' ? 'ar-SA' : 'en-US')}
                   </span>
                 </div>
 
@@ -228,7 +235,7 @@ export default function Blog() {
 
                 {/* Read More Button */}
                 <Link
-                  href={`/blogs/${blog.customId}`}
+                  href={`/blogs/${blog._id}`}
                   className="block w-full py-4 text-xl border-2 border-[#AA9554] text-[#AA9554] rounded-full hover:bg-[#AA9554] hover:text-white transition-all duration-300 text-center"
                 >
                   {t('readMore')}

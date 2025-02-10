@@ -131,18 +131,22 @@ export default function FAQ() {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const response = await fetch('http://localhost:8080/question/')
-        const data: QuestionResponse = await response.json()
-        setQuestions(data.questionData)
-        setLoading(false)
+        const apiUrl = locale === 'ar' 
+          ? 'http://localhost:8080/question/ar' 
+          : 'http://localhost:8080/question/en';
+        
+        const response = await fetch(apiUrl);
+        const data: QuestionResponse = await response.json();
+        setQuestions(data.questionData);
+        setLoading(false);
       } catch (error) {
-        console.error('Error fetching questions:', error)
-        setLoading(false)
+        console.error('Error fetching questions:', error);
+        setLoading(false);
       }
     }
 
-    fetchQuestions()
-  }, [])
+    fetchQuestions();
+  }, [locale]); // Re-fetch when locale changes
 
   if (loading) {
     return (
