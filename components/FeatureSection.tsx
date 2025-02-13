@@ -1,8 +1,9 @@
-'use client';
-import Image from "next/image";
-import { motion } from "framer-motion";
-import { useLocale } from 'next-intl';
-import ClientOnly from "./ClientOnly";
+'use client'
+
+import Image from "next/image"
+import { motion } from "framer-motion"
+import { useLocale } from 'next-intl'
+import { useEffect, useState } from 'react'
 
 const features = [
   { title: { ar: "قريب من جميع الخدمات", en: "Close to All Services" }, icon: "/service.svg" },
@@ -10,16 +11,24 @@ const features = [
   { title: { ar: "كراج سيارة", en: "Car Garage" }, icon: "/TaxiRank.svg" },
   { title: { ar: "حدائق جانبية", en: "Side Gardens" }, icon: "/ParkBench.svg" },
   { title: { ar: "إشراف الأعمال من قبل مهندسين معتمدين", en: "Work Supervision by Certified Engineers" }, icon: "/engineer.svg" },
-  { title: { ar: "مصعد راكب للدور العلوي", en: "Passenger Elevator to Upper Floor" }, icon: "/elevator.svg" },
-];
+  { title: { ar: "مصعد راكب للدور العلوي", en: "Passenger Elevator to Upper Floor" }, icon: "/elevator.svg" }
+]
 
 export default function FeatureSection() {
-  const locale = useLocale();
-  const isRTL = locale === 'ar';
+  const locale = useLocale()
+  const isRTL = locale === 'ar'
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+
+  if (!isClient) {
+    return null
+  }
 
   return (
-    <ClientOnly>
-    <section className="relative w-full   my-16 lg:my-32">
+    <section className="relative w-full my-16 lg:my-32">
       <motion.div 
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -34,7 +43,6 @@ export default function FeatureSection() {
       </motion.div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 bg-[#20284D]">
-        {/* Map Image Section */}
         <div className="relative h-[300px] lg:h-[846px]">
           <Image
             src="/features.png"
@@ -46,7 +54,6 @@ export default function FeatureSection() {
           <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#20284D]/50" />
         </div>
 
-        {/* Features List Section */}
         <div className={`p-8 lg:p-16 ${isRTL ? 'rtl' : 'ltr'}`}>
           <div className="flex flex-col gap-8 lg:gap-12">
             {features.map((feature, index) => (
@@ -74,6 +81,5 @@ export default function FeatureSection() {
         </div>
       </div>
     </section>
-    </ClientOnly>
-  );
+  )
 }

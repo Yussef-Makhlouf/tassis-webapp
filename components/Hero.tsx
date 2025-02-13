@@ -67,11 +67,13 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useTranslations } from 'next-intl'
+import ClientOnly from "./ClientOnly"
 
 export default function Hero() {
   const t = useTranslations()
   
   return (
+    <ClientOnly>
     <div className="relative h-[85vh] lg:h-screen">
       <Image
         src="/image1.png"
@@ -122,5 +124,6 @@ export default function Hero() {
         </div>
       </div>
     </div>
+    </ClientOnly>
   )
 }

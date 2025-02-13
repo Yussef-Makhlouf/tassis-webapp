@@ -1,19 +1,19 @@
-
 'use client'
+
 import { useState, useEffect } from 'react'
 import { ChevronDown } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useLocale } from 'next-intl'
 
 interface Question {
-  _id: string;
-  question: string;
-  answer: string;
+  _id: string
+  question: string
+  answer: string
 }
 
 interface QuestionResponse {
-  message: string;
-  questionData: Question[];
+  message: string
+  questionData: Question[]
 }
 
 export default function FAQ() {
@@ -24,35 +24,31 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(0)
   const [questions, setQuestions] = useState<Question[]>([])
   const [loading, setLoading] = useState(true)
+  const [isClient, setIsClient] = useState(false)
 
   useEffect(() => {
+    setIsClient(true)
     const fetchQuestions = async () => {
       try {
         const apiUrl = locale === 'ar' 
           ? 'http://localhost:8080/question/ar' 
-          : 'http://localhost:8080/question/en';
+          : 'http://localhost:8080/question/en'
         
-        const response = await fetch(apiUrl);
-        const data: QuestionResponse = await response.json();
-        setQuestions(data.questionData);
-        setLoading(false);
+        const response = await fetch(apiUrl)
+        const data: QuestionResponse = await response.json()
+        setQuestions(data.questionData)
+        setLoading(false)
       } catch (error) {
-        console.error('Error fetching questions:', error);
-        setLoading(false);
+        console.error('Error fetching questions:', error)
+        setLoading(false)
       }
     }
 
-    fetchQuestions();
-  }, [locale]); // Re-fetch when locale changes
+    fetchQuestions()
+  }, [locale])
 
-  if (loading) {
-    return (
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center">{t('loading')}</div>
-        </div>
-      </section>
-    )
+  if (!isClient || loading) {
+    return null
   }
 
   return (

@@ -1,12 +1,14 @@
-export const locales = ['ar', 'en'] as const;
-export const defaultLocale = 'ar' as const;
+import { getRequestConfig } from 'next-intl/server';
+import { getLocale } from 'next-intl/server';
 
-export const pathnames = {
-  '/': '/',
-  '/blogs': '/blogs',
-  '/about': '/about',
-  '/contact': '/contact',
-  '/projects': '/projects'
-} as const;
+export default getRequestConfig(async () => {
+  const locale = await getLocale();
+  return {
+    messages: (await import(`../messages/${locale}.ts`)).default
+  };
+});
 
-export type Locale = (typeof locales)[number];
+export const locales = ['ar', 'en'] as const
+export const defaultLocale = 'ar' as const
+
+export type Locale = (typeof locales)[number]

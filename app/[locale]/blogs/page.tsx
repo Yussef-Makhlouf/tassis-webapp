@@ -10,6 +10,7 @@ import { useState, useEffect, Suspense } from "react";
 import { useTranslations } from 'next-intl';
 import { Eye } from 'lucide-react'; // Add this import for the views icon
 import Loading from "@/app/loading";
+import ClientOnly from "@/components/ClientOnly";
 
 interface Blog {
   _id: string;
@@ -76,6 +77,7 @@ export default function BlogsPage() {
   };
 
   return (
+    <ClientOnly>
     <main className="min-h-screen bg-white">
       <header className="bg-white top-0 left-0 right-0 shadow-md">
         <Navbar />
@@ -156,5 +158,6 @@ export default function BlogsPage() {
       <Contact />
       <Footer />
     </main>
+    </ClientOnly>
   );
 }

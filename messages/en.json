@@ -6,6 +6,7 @@
     "blog": "Blog",
     "contact": "Contact"
   },
+
   "hero": {
     "title": "We Create for You!",
     "subtitle": "Your First Home",
@@ -42,7 +43,8 @@
     "address": "Riyadh - Al Fayha District",
     "country": "Saudi Arabia",
     "copyright": "All rights reserved for Tasis Albina Real Estate Development Company",
-    "madeBy": "Crafted with precision by Tarmiz Tech"
+    "madeBy": "Crafted with precision by Tarmiz Tech",
+    "subscribeError":"An error occurred while subscribing to the newsletter"
   },
   "contact": {
     "title": "Contact Us",
@@ -59,6 +61,53 @@
       "senderEmail": "Invalid email address",
       "phone": "Invalid phone number",
       "messageContent": "Message is required and must be less than 500 characters"
+    }
+  },
+  "consultation": {
+    "question": "Do you want to schedule a consultation ",
+    "cta":"Let's Start",
+    "title": "Real Estate Consultation Appointment",
+    "steps": {
+      "meetingType": "What is your preferred method of contact?",
+      "selectDay": "Select a suitable day for contact:",
+      "contactInfo": "Let us contact you:",
+      "thankYou": "Thank you for contacting us"
+    },
+    "meetingMethods": {
+      "google_meet": "Google Meet",
+      "zoom": "Zoom",
+      "phone_call": "Phone Call",
+      "whatsapp": "WhatsApp"
+    },
+    "weekDays": {
+      "saturday": "Saturday",
+      "sunday": "Sunday",
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday"
+    },
+    "form": {
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "submit": "Submit",
+      "sending": "Sending...",
+      "acceptTerms": "I agree to the processing of my personal data",
+      "acceptMarketing": "I agree to receive marketing content"
+    },
+    "errors": {
+      "meetingMethod": "Please select a meeting method",
+      "selectedDay": "Please select a suitable day",
+      "email": "Invalid email address",
+      "phone": "Invalid phone number",
+      "acceptTerms": "You must agree to the terms",
+      "acceptMarketing": "You must agree to receive marketing content"
+    },
+    "thankYouMessage": {
+      "received": "We have received your information and will contact you as soon as possible.",
+      "browse": "In the meantime, you can check out our new real estate projects",
+      "autoClose": "Window will close automatically in 5 seconds"
     }
   },
   "blog": {

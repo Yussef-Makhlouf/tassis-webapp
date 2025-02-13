@@ -6,6 +6,7 @@ import { Link } from "@/i18n/navigation";
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { useLocale } from 'next-intl';
+import ClientOnly from "./ClientOnly";
 
 interface Blog {
   _id: string;
@@ -65,6 +66,7 @@ export default function Blog() {
   }
 
   return (
+    <ClientOnly>
     <section className="py-24">
       <div className="container mx-auto px-4 lg:px-8">
         {/* Section Title */}
@@ -134,5 +136,7 @@ export default function Blog() {
         </div>
       </div>
     </section>
+    </ClientOnly>
   );
+
 }

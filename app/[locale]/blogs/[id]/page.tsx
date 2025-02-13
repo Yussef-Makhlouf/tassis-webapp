@@ -9,6 +9,7 @@ import Partners from "@/components/Partners";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { Eye, Calendar, Mail, X } from "lucide-react";
+import ClientOnly from "@/components/ClientOnly";
 
 interface BlogData {
   Image: {
@@ -105,7 +106,7 @@ export default function BlogPost() {
 
   if (loading) {
     return (
-    
+      <ClientOnly>
       <main className="min-h-screen bg-white">
         <Navbar />
         <div className="pt-32 px-4">
@@ -121,12 +122,14 @@ export default function BlogPost() {
           </div>
         </div>
       </main>
+      </ClientOnly>
     );
   }
 
   if (!blog) return null;
 
   return (
+    <ClientOnly>
     <main className="min-h-screen bg-white">
       <header className="bg-white/95 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 shadow-lg">
         <Navbar />
@@ -339,6 +342,6 @@ export default function BlogPost() {
       <Footer />
    
     </main>
-
+    </ClientOnly>
   );
 }
