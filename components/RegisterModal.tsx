@@ -13,10 +13,6 @@ const formSchema = z.object({
     .regex(/^(05)[0-9]{8}$/, 'رقم الجوال يجب أن يبدأ ب 05 ويتكون من 10 أرقام'),
   email: z.string()
     .email('البريد الإلكتروني غير صحيح'),
-  projectType: z.string()
-    .min(1, 'الرجاء اختيار نوع المشروع'),
-  apartmentType: z.string()
-    .min(1, 'الرجاء اختيار نوع الشقة'),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -25,9 +21,11 @@ interface RegisterModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSuccess: () => void;
+  unitId: string;
+  categoryId: string;
 }
 
-export default function RegisterModal({ isOpen, onClose, onSuccess }: RegisterModalProps) {
+export default function RegisterModal({ isOpen, onClose, onSuccess, unitId, categoryId }: RegisterModalProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   
   const { 
@@ -42,11 +40,23 @@ export default function RegisterModal({ isOpen, onClose, onSuccess }: RegisterMo
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
     try {
-      // هنا يمكنك إضافة منطق إرسال البيانات إلى الخادم
-      await new Promise(resolve => setTimeout(resolve, 1000)); // محاكاة طلب API
-      console.log(data);
-      reset();
-      onSuccess();
+      const response = await fetch('http://localhost:8080/interested/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...data,
+          unitId,
+          categoryId
+        }),
+      });
+
+      const result = await response.json();
+      if (result.message === "Interest registered successfully") {
+        reset();
+        onSuccess();
+      }
     } catch (error) {
       console.error(error);
     } finally {
@@ -140,7 +150,7 @@ export default function RegisterModal({ isOpen, onClose, onSuccess }: RegisterMo
                   </div>
 
                   {/* اختيار نوع المشروع */}
-                  <div className="space-y-2">
+                  {/* <div className="space-y-2">
                     <label className="block text-[#20284D] font-bold text-sm">
                       اختيار نوع المشروع
                     </label>
@@ -156,10 +166,10 @@ export default function RegisterModal({ isOpen, onClose, onSuccess }: RegisterMo
                     {errors.projectType && (
                       <p className="text-red-500 text-xs">{errors.projectType.message}</p>
                     )}
-                  </div>
+                  </div> */}
 
                   {/* اختيار نوع الشقة */}
-                  <div className="space-y-2">
+                  {/* <div className="space-y-2">
                     <label className="block text-[#20284D] font-bold text-sm">
                       اختيار نوع الشقة
                     </label>
@@ -177,7 +187,7 @@ export default function RegisterModal({ isOpen, onClose, onSuccess }: RegisterMo
                     {errors.apartmentType && (
                       <p className="text-red-500 text-xs">{errors.apartmentType.message}</p>
                     )}
-                  </div>
+                  </div> */}
 
                   {/* أزرار التحكم */}
                   <div className="pt-6 flex gap-4">
