@@ -184,7 +184,7 @@ export default function ProjectDetails() {
   const [category, setCategory] = useState<Category | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const categoryId = params?.id as string;
+  const categoryId = params?.categoryId as string;
 
   useEffect(() => {
     const fetchData = async () => {

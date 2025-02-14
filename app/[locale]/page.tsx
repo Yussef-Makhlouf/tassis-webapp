@@ -1,5 +1,5 @@
 'use client'
-import { useState } from "react";
+// import { useState } from "react";
 import AboutUs from "@/components/AboutUs";
 import Blog from "@/components/Blog";
 import Consultation from "@/components/Consultation";
@@ -18,7 +18,7 @@ import FeatureSection from "@/components/FeatureSection";
 
 
 export default function Home() {
-  const [currentPage, setCurrentPage] = useState(1);
+  // const [currentPage, setCurrentPage] = useState(1);
 
   return (
     <div 

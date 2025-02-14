@@ -45,16 +45,7 @@ interface Unit {
   };
 }
 // Add this interface at the top with other interfaces
-interface InterestedResponse {
-  message: string;
-  interested: {
-    fullName: string;
-    phone: number;
-    email: string;
-    categoryId: string;
-    unitId: string;
-  }
-}
+
 
 
 const ProjectPage = ({ params }: { params: { unitId: string } }) => {
@@ -95,29 +86,6 @@ const ProjectPage = ({ params }: { params: { unitId: string } }) => {
   };
 
   // Add this function inside the ProjectPage component
-const handleRegisterInterest = async (formData: { fullName: string; phone: number; email: string }) => {
-  try {
-    const response = await fetch('http://localhost:8080/interested/create', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        ...formData,
-        categoryId: unit?.categoryId,
-        unitId: params.unitId
-      }),
-    });
-
-    const data: InterestedResponse = await response.json();
-    
-    if (data.message === "Interest registered successfully") {
-      handleRegistrationSuccess();
-    }
-  } catch (error) {
-    console.error('Error registering interest:', error);
-  }
-};
 
   const handleRegistrationSuccess = () => {
     setIsRegisterOpen(false);
@@ -125,12 +93,7 @@ const handleRegisterInterest = async (formData: { fullName: string; phone: numbe
   };
 
 // Then pass this handler to the RegisterModal component
-<RegisterModal 
-  isOpen={isRegisterOpen} 
-  onClose={() => setIsRegisterOpen(false)}
-  onSuccess={handleRegistrationSuccess}
-  onSubmit={handleRegisterInterest}
-/>
+
 
   if (loading || !unit) {
     return <div>Loading...</div>;
