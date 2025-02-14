@@ -160,48 +160,43 @@ import { useTranslations } from 'next-intl';
 import { useLocale } from 'next-intl';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
-const projects = [
-  {
-    id: 1,
-    key: 'project1',
-    image: '/build1.png',
-  },
-  {
-    id: 2,
-    key: 'project2',
-    image: '/build2.png',
-  },
-  {
-    id: 3,
-    key: 'project3',
-    image: '/build3.png',
-  },
-  {
-    id: 4,
-    key: 'project4',
-    image: '/build1.png',
-  },
-  {
-    id: 5,
-    key: 'project5',
-    image: '/build2.png',
-  },
-  {
-    id: 6,
-    key: 'project6',
-    image: '/build3.png',
-  }
-];
+interface Category {
+  _id: string;
+  title: string;
+  Image: {
+    secure_url: string;
+    public_id: string;
+  };
+}
 
 export default function Projects() {
   const t = useTranslations('projects');
   const locale = useLocale();
   const isRTL = locale === 'ar';
+  const [categories, setCategories] = useState<Category[]>([]);
   
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const apiUrl = locale === 'ar'
+          ? 'http://localhost:8080/category/getAllCategoryTitleImageAR/?size=6'
+          : 'http://localhost:8080/category/getAllCategoryTitleImageEN/?size=6';
+
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+        setCategories(data.category);
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
+    };
+
+    fetchCategories();
+  }, [locale]);
 
   return (
     <section className="py-20 bg-white" dir={isRTL ? 'rtl' : 'ltr'}>
@@ -232,14 +227,8 @@ export default function Projects() {
             loop={true}
             dir={isRTL ? 'rtl' : 'ltr'}
             breakpoints={{
-              640: {
-                slidesPerView: 2,
-                spaceBetween: 24,
-              },
-              1024: {
-                slidesPerView: 3,
-                spaceBetween: 32,
-              },
+              640: { slidesPerView: 2, spaceBetween: 24 },
+              1024: { slidesPerView: 3, spaceBetween: 32 },
             }}
             onInit={(swiper) => {
               // @ts-ignore
@@ -251,12 +240,12 @@ export default function Projects() {
             }}
             className="!pb-8"
           >
-            {projects.map((project) => (
-              <SwiperSlide key={project.id}>
+            {categories.map((category) => (
+              <SwiperSlide key={category._id}>
                 <div className="relative group overflow-hidden rounded-2xl aspect-[0.8] h-[500px]">
                   <Image
-                    src={project.image}
-                    alt={t(`${project.key}.title`)}
+                    src={category.Image.secure_url}
+                    alt={category.title}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -264,10 +253,10 @@ export default function Projects() {
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/80" />
                   <div className="absolute bottom-0 right-0 p-8 w-full text-right">
                     <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">
-                      {t(`${project.key}.title`)}
+                      {category.title}
                     </h3>
                     <Link 
-                      href={`/projects/${project.id}`}
+                      href={`/projects/${category._id}`}
                       className="px-8 py-2.5 bg-transparent border border-[#AA9554] text-[#AA9554] rounded-full text-lg hover:bg-[#AA9554] hover:text-white transition-all duration-300 transform hover:scale-105"
                     >
                       {t('viewProject')}
