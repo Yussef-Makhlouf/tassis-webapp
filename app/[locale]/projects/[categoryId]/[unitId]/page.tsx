@@ -62,8 +62,8 @@ const ProjectPage = ({ params }: { params: { unitId: string } }) => {
       try {
         const response = await fetch(`http://localhost:8080/unit/getunit/${params.unitId}`);
         const data = await response.json();
-        setUnit(data.unit);
-        console.log("categoryId",data.unit.categoryId);
+        setUnit(data.returnedData.unit);
+        // console.log("categoryId",data.unit.categoryId);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching unit:', error);

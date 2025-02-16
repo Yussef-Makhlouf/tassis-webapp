@@ -54,6 +54,7 @@ export default function BlogPost() {
         if (!params?.id) return;
         const response = await fetch(`http://localhost:8080/blog/findOne/${params?.id}`);
         const data: BlogResponse = await response.json();
+        console.log(data);
         setBlog(data.blog);
         setLoading(false);
       } catch (error) {
@@ -204,17 +205,17 @@ export default function BlogPost() {
                       {blog.description}
                     </p>
 
-                    {/* Keywords */}
-                    <div className="flex flex-wrap gap-2 justify-end">
-                      {blog.Keywords.map((keyword, idx) => (
-                        <span
-                          key={idx}
-                          className="px-4 py-2 bg-gray-100 text-[#20284D] rounded-full text-sm"
-                        >
-                          {keyword}
-                        </span>
-                      ))}
-                    </div>
+{/* Keywords */}
+<div className="flex flex-wrap gap-2 justify-end">
+  {(blog.Keywords || []).map((keyword, idx) => (
+    <span
+      key={idx}
+      className="px-4 py-2 bg-gray-100 text-[#20284D] rounded-full text-sm"
+    >
+      {keyword}
+    </span>
+  ))}
+</div>
                   </div>
                 </div>
               </div>

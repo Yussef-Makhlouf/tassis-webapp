@@ -64,6 +64,44 @@ export default function ConsultationModal({ isOpen, onClose }: { isOpen: boolean
     }
   }, [step, onClose])
 
+  const handleSubmit = async () => {
+    setIsSubmitting(true)
+    try {
+      contactSchema.parse(formData)
+      
+      const response = await fetch('http://localhost:8080/consultation/create/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          type: formData.meetingMethod,
+          email: formData.email,
+          phone: formData.phone,
+          selectedDay: formData.selectedDay,
+          acceptTerms: formData.acceptTerms,
+          acceptMarketing: formData.acceptMarketing
+        })
+      })
+  
+      if (!response.ok) {
+        throw new Error('Failed to create consultation')
+      }
+  
+      setStep(4)
+    } catch (error: any) {
+      const validationErrors = error.errors?.reduce((acc: any, err: any) => {
+        acc[err.path[0]] = t(`errors.${err.path[0]}`)
+        return acc
+      }, {}) || { submit: 'Failed to submit consultation' }
+      
+      setErrors(validationErrors)
+    } finally {
+      setIsSubmitting(false)
+    }
+}
+  
+
   const handleNext = () => {
     if (step === 1 && !formData.meetingMethod) {
       setErrors({ ...errors, meetingMethod: t('errors.meetingMethod') })
@@ -96,22 +134,6 @@ export default function ConsultationModal({ isOpen, onClose }: { isOpen: boolean
     }
   }
 
-  const handleSubmit = async () => {
-    setIsSubmitting(true)
-    try {
-      contactSchema.parse(formData)
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      setStep(4)
-    } catch (error: any) {
-      const validationErrors = error.errors.reduce((acc: any, err: any) => {
-        acc[err.path[0]] = t(`errors.${err.path[0]}`)
-        return acc
-      }, {})
-      setErrors(validationErrors)
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
 
   if (!isOpen) return null
 
