@@ -108,7 +108,10 @@
       "elevator": "مصعد خاص",
       "parking": "مواقف السيارات",
       "waterTank": "خزانات المياه",
-      "livingRoom": "الصالة"
+      "livingRoom": "الصالة",
+      "callUs": "اتصل بنا",
+      "whatsapp": "واتساب",
+      "email": "البريد الإلكتروني"
     },
     "contact": {
       "callUs": "اتصل بنا",
@@ -210,6 +213,7 @@
     "Available for sale": "متاح للبيع",
     "available for rent": "متاح للإيجار",
     "Reserved": "محجوز",
+    "Under Maintenanc": "تحت الصيانة",
     "Rented/Leased": "مؤجر",
     "Sold": "مباع",
     "Unavailable": "غير متاح"
