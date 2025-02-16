@@ -1,14 +1,40 @@
 'use client';
-import { Fragment } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
+import ClientOnly from './ClientOnly';
 
 interface LocationModalProps {
   isOpen: boolean;
   onClose: () => void;
+  unitId: string;
 }
 
-export default function LocationModal({ isOpen, onClose }: LocationModalProps) {
+export default function LocationModal({ isOpen, onClose, unitId }: LocationModalProps) {
+  const [unitData, setUnitData] = useState<any>(null);
+
+  useEffect(() => {
+    const fetchUnitLocation = async () => {
+      try {
+        const response = await fetch(`http://localhost:8080/unit/getunit/${unitId}`);
+        const data = await response.json();
+        setUnitData(data.returnedData);
+      } catch (error) {
+        console.error('Error fetching unit location:', error);
+      }
+    };
+
+    if (isOpen && unitId) {
+      fetchUnitLocation();
+    }
+  }, [isOpen, unitId]);
+
+  const coordinates = unitData?.unit?.coordinates;
+  const mapEmbedUrl = coordinates ? 
+    `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3!2d${coordinates.longitude}!3d${coordinates.latitude}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zM!5e0!3m2!1sen!2s!4v1234567890!5m2!1sen!2s` 
+    : '';
+
   return (
+    <ClientOnly>
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-50" onClose={onClose}>
         <Transition.Child
@@ -37,7 +63,7 @@ export default function LocationModal({ isOpen, onClose }: LocationModalProps) {
               <Dialog.Panel className="w-full max-w-3xl transform overflow-hidden rounded-2xl bg-white shadow-xl transition-all">
                 <div className="relative">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=YOUR_MAP_EMBED_URL"
+                    src={mapEmbedUrl}
                     width="100%"
                     height="500"
                     style={{ border: 0 }}
@@ -57,10 +83,10 @@ export default function LocationModal({ isOpen, onClose }: LocationModalProps) {
                 </div>
                 <div className="p-6 bg-white">
                   <h3 className="text-xl font-bold text-[#20284D] mb-2">موقع المشروع</h3>
-                  <p className="text-gray-600">حي الريان، شرق مدينة الرياض</p>
+                  <p className="text-gray-600">{unitData?.unit?.title}</p>
                   <div className="mt-4 flex gap-4">
                     <a
-                      href="https://goo.gl/maps/YOUR_LOCATION_URL"
+                      href={unitData?.googleMapsLink}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex-1 bg-[#20284D] text-white rounded-lg py-3 font-bold text-sm hover:bg-[#2a3761] transition-colors text-center"
@@ -81,5 +107,6 @@ export default function LocationModal({ isOpen, onClose }: LocationModalProps) {
         </div>
       </Dialog>
     </Transition>
+    </ClientOnly>
   );
-} 
+}

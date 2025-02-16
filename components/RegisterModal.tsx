@@ -4,15 +4,17 @@ import { Dialog, Transition } from '@headlessui/react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import ClientOnly from './ClientOnly';
+import { useTranslations } from 'next-intl';
 
 const formSchema = z.object({
   fullName: z.string()
-    .min(3, 'الاسم يجب أن يكون 3 أحرف على الأقل')
-    .max(50, 'الاسم يجب أن لا يتجاوز 50 حرف'),
+    .min(3, 'register.fullName.error')
+    .max(50, 'register.fullName.error'),
   phone: z.string()
-    .regex(/^(05)[0-9]{8}$/, 'رقم الجوال يجب أن يبدأ ب 05 ويتكون من 10 أرقام'),
+    .regex(/^(05)[0-9]{8}$/, 'register.phone.error'),
   email: z.string()
-    .email('البريد الإلكتروني غير صحيح'),
+    .email('register.email.error'),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -26,6 +28,7 @@ interface RegisterModalProps {
 }
 
 export default function RegisterModal({ isOpen, onClose, onSuccess, unitId, categoryId }: RegisterModalProps) {
+  const t = useTranslations('register');
   const [isSubmitting, setIsSubmitting] = useState(false);
   
   const { 
@@ -40,7 +43,7 @@ export default function RegisterModal({ isOpen, onClose, onSuccess, unitId, cate
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
     try {
-      const response = await fetch('http://localhost:8080/interested/create', {
+      const response = await fetch('/api/interested/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -65,163 +68,118 @@ export default function RegisterModal({ isOpen, onClose, onSuccess, unitId, cate
   };
 
   return (
-    <Transition appear show={isOpen} as={Fragment}>
-      <Dialog as="div" className="relative z-50" onClose={onClose}>
-        <Transition.Child
-          as={Fragment}
-          enter="ease-out duration-300"
-          enterFrom="opacity-0"
-          enterTo="opacity-100"
-          leave="ease-in duration-200"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-        >
-          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" />
-        </Transition.Child>
+    <ClientOnly>
+      <Transition appear show={isOpen} as={Fragment}>
+        <Dialog as="div" className="relative z-50" onClose={onClose}>
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" />
+          </Transition.Child>
 
-        <div className="fixed inset-0 overflow-y-auto">
-          <div className="flex min-h-full items-center justify-center p-4">
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0 scale-95"
-              enterTo="opacity-100 scale-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0 scale-95"
-            >
-              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-8 shadow-xl transition-all">
-                <Dialog.Title
-                  as="h3"
-                  className="text-2xl font-bold text-[#20284D] text-center mb-8"
-                >
-                  تسجيل الاهتمام
-                </Dialog.Title>
+          <div className="fixed inset-0 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-8 shadow-xl transition-all">
+                  <Dialog.Title className="text-2xl font-bold text-[#20284D] text-center mb-8">
+                    {t('title')}
+                  </Dialog.Title>
 
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                  {/* الاسم الكامل */}
-                  <div className="space-y-2">
-                    <label className="block text-[#20284D] font-bold text-sm">
-                      الاسم كامل
-                    </label>
-                    <input
-                      {...register('fullName')}
-                      type="text"
-                      className="w-full p-3 rounded-lg border-2 border-[#20284D] focus:outline-none focus:border-[#AA9554] transition-colors"
-                      placeholder="ادخل اسمك الكامل"
-                    />
-                    {errors.fullName && (
-                      <p className="text-red-500 text-xs">{errors.fullName.message}</p>
-                    )}
-                  </div>
-
-                  {/* رقم الجوال */}
-                  <div className="space-y-2">
-                    <label className="block text-[#20284D] font-bold text-sm">
-                      رقم الجوال
-                    </label>
-                    <input
-                      {...register('phone')}
-                      type="tel"
-                      className="w-full p-3 rounded-lg border-2 border-[#20284D] focus:outline-none focus:border-[#AA9554] transition-colors"
-                      placeholder="05xxxxxxxx"
-                      dir="ltr"
-                    />
-                    {errors.phone && (
-                      <p className="text-red-500 text-xs">{errors.phone.message}</p>
-                    )}
-                  </div>
-
-                  {/* البريد الإلكتروني */}
-                  <div className="space-y-2">
-                    <label className="block text-[#20284D] font-bold text-sm">
-                      البريد الالكتروني
-                    </label>
-                    <input
-                      {...register('email')}
-                      type="email"
-                      className="w-full p-3 rounded-lg border-2 border-[#20284D] focus:outline-none focus:border-[#AA9554] transition-colors"
-                      placeholder="example@domain.com"
-                      dir="ltr"
-                    />
-                    {errors.email && (
-                      <p className="text-red-500 text-xs">{errors.email.message}</p>
-                    )}
-                  </div>
-
-                  {/* اختيار نوع المشروع */}
-                  {/* <div className="space-y-2">
-                    <label className="block text-[#20284D] font-bold text-sm">
-                      اختيار نوع المشروع
-                    </label>
-                    <select
-                      {...register('projectType')}
-                      className="w-full p-3 rounded-lg border-2 border-[#20284D] focus:outline-none focus:border-[#AA9554] transition-colors bg-white"
-                    >
-                      <option value="">اختر نوع المشروع</option>
-                      <option value="residential">سكني</option>
-                      <option value="commercial">تجاري</option>
-                      <option value="mixed">متعدد الاستخدامات</option>
-                    </select>
-                    {errors.projectType && (
-                      <p className="text-red-500 text-xs">{errors.projectType.message}</p>
-                    )}
-                  </div> */}
-
-                  {/* اختيار نوع الشقة */}
-                  {/* <div className="space-y-2">
-                    <label className="block text-[#20284D] font-bold text-sm">
-                      اختيار نوع الشقة
-                    </label>
-                    <select
-                      {...register('apartmentType')}
-                      className="w-full p-3 rounded-lg border-2 border-[#20284D] focus:outline-none focus:border-[#AA9554] transition-colors bg-white"
-                    >
-                      <option value="">اختر نوع الشقة</option>
-                      <option value="studio">استوديو</option>
-                      <option value="1bedroom">غرفة نوم</option>
-                      <option value="2bedroom">غرفتين نوم</option>
-                      <option value="3bedroom">ثلاث غرف نوم</option>
-                      <option value="4bedroom">أربع غرف نوم</option>
-                    </select>
-                    {errors.apartmentType && (
-                      <p className="text-red-500 text-xs">{errors.apartmentType.message}</p>
-                    )}
-                  </div> */}
-
-                  {/* أزرار التحكم */}
-                  <div className="pt-6 flex gap-4">
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="flex-1 bg-[#20284D] text-white rounded-lg py-3 font-bold text-sm hover:bg-[#2a3761] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      {isSubmitting ? (
-                        <span className="flex items-center justify-center gap-2">
-                          <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                          </svg>
-                          جاري الإرسال...
-                        </span>
-                      ) : (
-                        'تأكيد تسجيل الاهتمام'
+                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                    <div className="space-y-2">
+                      <label className="block text-[#20284D] font-bold text-sm">
+                        {t('fullName.label')}
+                      </label>
+                      <input
+                        {...register('fullName')}
+                        type="text"
+                        className="w-full p-3 rounded-lg border-2 border-[#20284D] focus:outline-none focus:border-[#AA9554] transition-colors"
+                        placeholder={t('fullName.placeholder')}
+                      />
+                      {errors.fullName && (
+                        <p className="text-red-500 text-xs">{t(errors.fullName.message as string)}</p>
                       )}
-                    </button>
-                    <button
-                      type="button"
-                      onClick={onClose}
-                      className="flex-1 border-2 border-[#20284D] text-[#20284D] rounded-lg py-3 font-bold text-sm hover:bg-gray-50 transition-colors"
-                    >
-                      إلغاء
-                    </button>
-                  </div>
-                </form>
-              </Dialog.Panel>
-            </Transition.Child>
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="block text-[#20284D] font-bold text-sm">
+                        {t('phone.label')}
+                      </label>
+                      <input
+                        {...register('phone')}
+                        type="tel"
+                        className="w-full p-3 rounded-lg border-2 border-[#20284D] focus:outline-none focus:border-[#AA9554] transition-colors"
+                        placeholder={t('phone.placeholder')}
+                        dir="ltr"
+                      />
+                      {errors.phone && (
+                        <p className="text-red-500 text-xs">{t(errors.phone.message as string)}</p>
+                      )}
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="block text-[#20284D] font-bold text-sm">
+                        {t('email.label')}
+                      </label>
+                      <input
+                        {...register('email')}
+                        type="email"
+                        className="w-full p-3 rounded-lg border-2 border-[#20284D] focus:outline-none focus:border-[#AA9554] transition-colors"
+                        placeholder={t('email.placeholder')}
+                        dir="ltr"
+                      />
+                      {errors.email && (
+                        <p className="text-red-500 text-xs">{t(errors.email.message as string)}</p>
+                      )}
+                    </div>
+
+                    <div className="pt-6 flex gap-4">
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="flex-1 bg-[#20284D] text-white rounded-lg py-3 font-bold text-sm hover:bg-[#2a3761] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        {isSubmitting ? (
+                          <span className="flex items-center justify-center gap-2">
+                            <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            {t('buttons.submitting')}
+                          </span>
+                        ) : (
+                          t('buttons.submit')
+                        )}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={onClose}
+                        className="flex-1 border-2 border-[#20284D] text-[#20284D] rounded-lg py-3 font-bold text-sm hover:bg-gray-50 transition-colors"
+                      >
+                        {t('buttons.cancel')}
+                      </button>
+                    </div>
+                  </form>
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
           </div>
-        </div>
-      </Dialog>
-    </Transition>
+        </Dialog>
+      </Transition>
+    </ClientOnly>
   );
-} 
+}

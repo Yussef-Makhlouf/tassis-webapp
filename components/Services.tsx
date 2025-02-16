@@ -2,6 +2,7 @@
 
 import { useTranslations } from 'next-intl'
 import { useEffect, useState } from 'react'
+import ClientOnly from './ClientOnly'
 
 const services = [
   { id: 1, key: 'rental' },
@@ -25,6 +26,7 @@ export default function Services() {
   }
 
   return (
+    <ClientOnly>
     <section className="py-16 md:py-20 lg:py-24">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 md:mb-16 lg:mb-20">
@@ -55,5 +57,6 @@ export default function Services() {
         </div>
       </div>
     </section>
+    </ClientOnly>
   )
 }

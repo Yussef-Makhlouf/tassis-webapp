@@ -63,6 +63,59 @@
       "messageContent": "الرسالة مطلوبة ويجب أن تكون أقل من 500 حرف"
     }
   },
+  
+    "register": {
+      "title": "تسجيل الاهتمام",
+      "fullName": {
+        "label": "الاسم كامل",
+        "placeholder": "ادخل اسمك الكامل",
+        "error": "الاسم يجب أن يكون 3 أحرف على الأقل ولا يتجاوز 50 حرف"
+      },
+      "phone": {
+        "label": "رقم الجوال",
+        "placeholder": "05xxxxxxxx",
+        "error": "رقم الجوال يجب أن يبدأ ب 05 ويتكون من 10 أرقام"
+      },
+      "email": {
+        "label": "البريد الالكتروني",
+        "placeholder": "example@domain.com",
+        "error": "البريد الإلكتروني غير صحيح"
+      },
+      "buttons": {
+        "submit": "تأكيد تسجيل الاهتمام",
+        "cancel": "إلغاء",
+        "submitting": "جاري الإرسال..."
+      }
+    
+  },
+  
+  "unitDetails": {
+    "loading": "جاري التحميل...",
+    "price": "السعر",
+    "currency": "ريال",
+    "projectImages": "صور المشروع",
+    "registerInterest": "سجل اهتمامك",
+    "viewOnMap": "عرض الموقع في الخريطة",
+    "contactUs": "تواصل معنا",
+    "features": {
+      "guard": "الحارس",
+      "maidRoom": "غرف الخادمة",
+      "bathrooms": "الحمامات",
+      "rooms": "الغرف",
+      "area": "المساحة",
+      "areaUnit": "متر²",
+      "cameras": "كاميرات مراقبة",
+      "elevator": "مصعد خاص",
+      "parking": "مواقف السيارات",
+      "waterTank": "خزانات المياه",
+      "livingRoom": "الصالة"
+    },
+    "contact": {
+      "callUs": "اتصل بنا",
+      "whatsapp": "واتساب",
+      "email": "البريد الإلكتروني"
+    }
+  },
   "consultation": {
     "title": "موعد الاستشارة العقارية",
     "question": "ما هو نوع الاستشارة التي تريدها؟",
@@ -143,7 +196,31 @@
     "recentPosts": "آخر المقالات"
 
 },
-  
+"projectDetails": {
+  "loading": "جاري التحميل...",
+  "location": "الموقع",
+  "area": "المساحة",
+  "areaUnit": "متر²",
+  "currency": "ريال",
+  "viewDetails": "تفاصيل المشروع",
+  "rooms": "الغرف",
+  "bathrooms": "الحمامات",
+  "parking": "المواقف",
+  "status": {
+    "Available for sale": "متاح للبيع",
+    "available for rent": "متاح للإيجار",
+    "Reserved": "محجوز",
+    "Rented/Leased": "مؤجر",
+    "Sold": "مباع",
+    "Unavailable": "غير متاح"
+  },
+  "types": {
+    "apartment": "شقة",
+    "villa": "فيلا",
+    "office": "مكتب",
+    "shop": "محل"
+  }
+},
   "projects": {
     "sectionTitle": "مشاريعنا",
     "sectionDescription": "ترتكز استراتيجية اعمالنا على الابتكار والقدرة على التكيف، انطلاقا من الرياض نركز جهودنا بشكل استراتيجي على مجموعة متنوعة من المشاريع، بما في ذلك المشاريع السكنية والتجارية والضيافة، وتجارة التجزئة، والوجهات السياحية والمشاريع العامة، مما يعكس الطبيعة المتعددة لعلامتنا التجارية",

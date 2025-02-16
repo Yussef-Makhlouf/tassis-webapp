@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useTranslations } from 'next-intl'
 import dynamic from 'next/dynamic'
+import ClientOnly from './ClientOnly'
 
 const ConsultationModal = dynamic(() => import('./ConsultationModal'), {
   ssr: false
@@ -13,7 +14,9 @@ export default function Consultation() {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   return (
+    <ClientOnly>
     <>
+   
       <div className="relative w-full py-12 md:py-20 lg:py-24 px-4">
         <div className="max-w-[1306px] mx-auto bg-[#20284D]/90 rounded-[25px] md:rounded-[50px] py-12 md:py-16 lg:py-20">
           <div className="flex flex-col items-center justify-center text-center px-4">
@@ -35,6 +38,8 @@ export default function Consultation() {
         </div>
       </div>
       <ConsultationModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      
     </>
+    </ClientOnly>
   )
 }

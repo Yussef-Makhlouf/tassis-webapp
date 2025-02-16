@@ -2,6 +2,7 @@
 import { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import Link from 'next/link';
+import ClientOnly from './ClientOnly';
 
 interface ThankYouModalProps {
   isOpen: boolean;
@@ -10,6 +11,7 @@ interface ThankYouModalProps {
 
 export default function ThankYouModal({ isOpen, onClose }: ThankYouModalProps) {
   return (
+    <ClientOnly>
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-50" onClose={onClose}>
         <Transition.Child
@@ -58,5 +60,6 @@ export default function ThankYouModal({ isOpen, onClose }: ThankYouModalProps) {
         </div>
       </Dialog>
     </Transition>
+    </ClientOnly>
   );
 } 

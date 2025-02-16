@@ -120,6 +120,7 @@ import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import { useLocale } from 'next-intl';
+import ClientOnly from './ClientOnly';
 
 const Counter = ({ end, duration = 2000 }) => {
   const [count, setCount] = useState(0);
@@ -181,6 +182,7 @@ export default function AboutUs() {
   const isRTL = locale === 'ar';
 
   return (
+    <ClientOnly>
     <section className="py-12 md:py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className={`flex flex-col lg:flex-row${isRTL ? '-reverse' : ''} items-start gap-8 lg:gap-16 mb-16 lg:mb-24`}>
@@ -233,5 +235,6 @@ export default function AboutUs() {
         </div>
       </div>
     </section>
+    </ClientOnly>
   );
 }

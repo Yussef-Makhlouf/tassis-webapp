@@ -63,6 +63,83 @@
       "messageContent": "Message is required and must be less than 500 characters"
     }
   },
+  
+    "register": {
+      "title": "Register Interest",
+      "fullName": {
+        "label": "Full Name",
+        "placeholder": "Enter your full name",
+        "error": "Name must be between 3-50 characters"
+      },
+      "phone": {
+        "label": "Phone Number",
+        "placeholder": "05xxxxxxxx",
+        "error": "Phone number must start with 05 and be 10 digits"
+      },
+      "email": {
+        "label": "Email Address",
+        "placeholder": "example@domain.com",
+        "error": "Invalid email address"
+      },
+      "buttons": {
+        "submit": "Confirm Registration",
+        "cancel": "Cancel",
+        "submitting": "Submitting..."
+      }
+    
+  },
+  "unitDetails": {
+    "loading": "Loading...",
+    "price": "Price",
+    "currency": "SAR",
+    "projectImages": "Project Images",
+    "registerInterest": "Register Interest",
+    "viewOnMap": "View on Map",
+    "contactUs": "Contact Us",
+    "features": {
+      "guard": "Guard",
+      "maidRoom": "Maid Room",
+      "bathrooms": "Bathrooms",
+      "rooms": "Rooms",
+      "area": "Area",
+      "areaUnit": "m²",
+      "cameras": "Security Cameras",
+      "elevator": "Private Elevator",
+      "parking": "Parking",
+      "waterTank": "Water Tanks",
+      "livingRoom": "Living Room"
+    },
+    "contact": {
+      "callUs": "Call Us",
+      "whatsapp": "WhatsApp",
+      "email": "Email"
+    }
+  },
+  "projectDetails": {
+    "loading": "Loading...",
+    "location": "Location",
+    "area": "Area",
+    "areaUnit": "m²",
+    "currency": "SAR",
+    "viewDetails": "View Project Details",
+    "rooms": "Rooms",
+    "bathrooms": "Bathrooms",
+    "parking": "Parking",
+    "status": {
+      "Available for sale": "Available for sale",
+      "available for rent": "Available for rent",
+      "Reserved": "Reserved",
+      "Rented/Leased": "Rented/Leased",
+      "Sold": "Sold",
+      "Unavailable": "Unavailable"
+    },
+    "types": {
+      "apartment": "Apartment",
+      "villa": "Villa",
+      "office": "Office",
+      "shop": "Shop"
+    }
+  },
   "consultation": {
     "question": "Do you want to schedule a consultation ",
     "cta":"Let's Start",

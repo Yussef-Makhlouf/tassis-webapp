@@ -4,8 +4,9 @@ import Footer from '@/components/Footer';
 import FAQ from '@/components/FAQ';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useState, useEffect } from 'react';
+import ClientOnly from '@/components/ClientOnly';
 
 interface Category {
   _id: string;
@@ -18,6 +19,7 @@ interface Category {
 
 export default function Projects() {
   const locale = useLocale();
+  const t = useTranslations('projects');
   const [categories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {
@@ -39,6 +41,7 @@ export default function Projects() {
   }, [locale]);
 
   return (
+    <ClientOnly>
     <main className="min-h-screen bg-white">
       <Navbar />
       
@@ -46,7 +49,7 @@ export default function Projects() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h1 className="text-3xl font-bold text-[#20284D] font-cairo">
-              مشاريعنا
+              {t('sectionTitle')}
             </h1>
             <div className="w-16 h-[3px] bg-[#AA9554] mx-auto mt-2 rounded-full" />
           </div>
@@ -72,7 +75,7 @@ export default function Projects() {
                     {category.title}
                   </h3>
                   <button className="bg-[#AA9554] text-white px-5 py-2 text-sm rounded-lg shadow-md hover:bg-[#8B7B45] transition-all duration-300">
-                    عرض التفاصيل
+                    {t('viewProject')}
                   </button>
                 </div>
               </Link>
@@ -84,5 +87,6 @@ export default function Projects() {
       <FAQ />
       <Footer />
     </main>
+    </ClientOnly>
   );
 }
