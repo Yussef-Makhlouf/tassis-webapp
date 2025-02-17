@@ -37,8 +37,8 @@ export default function Blog() {
       try {
         // Check the locale and select the appropriate API endpoint
         const apiUrl = locale === 'ar' 
-          ? 'http://localhost:8080/blog/ar' 
-          : 'http://localhost:8080/blog/en';
+          ? 'https://tasis-al-bina.onrender.com/blog/ar' 
+          : 'https://tasis-al-bina.onrender.com/blog/en';
 
         const response = await fetch(apiUrl);
         const data: BlogResponse = await response.json();

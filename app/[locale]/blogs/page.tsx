@@ -44,8 +44,8 @@ export default function BlogsPage() {
     const fetchBlogs = async () => {
       try {
         const apiUrl = locale === 'ar'
-          ? `http://localhost:8080/blog/ar?page=${currentPage}&size=${blogsPerPage}`
-          : `http://localhost:8080/blog/en?page=${currentPage}&size=${blogsPerPage}`;
+          ? `https://tasis-al-bina.onrender.com/blog/ar?page=${currentPage}&size=${blogsPerPage}`
+          : `https://tasis-al-bina.onrender.com/blog/en?page=${currentPage}&size=${blogsPerPage}`;
 
         const response = await fetch(apiUrl);
         const data: BlogResponse = await response.json();

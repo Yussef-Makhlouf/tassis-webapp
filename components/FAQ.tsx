@@ -31,8 +31,8 @@ export default function FAQ() {
     const fetchQuestions = async () => {
       try {
         const apiUrl = locale === 'ar' 
-          ? 'http://localhost:8080/question/ar' 
-          : 'http://localhost:8080/question/en'
+          ? 'https://tasis-al-bina.onrender.com/question/ar' 
+          : 'https://tasis-al-bina.onrender.com/question/en'
         
         const response = await fetch(apiUrl)
         const data: QuestionResponse = await response.json()

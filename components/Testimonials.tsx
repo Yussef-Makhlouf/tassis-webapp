@@ -43,8 +43,8 @@ export default function Testimonials() {
       try {
         const apiUrl =
           locale === 'ar'
-            ? 'http://localhost:8080/review/ar'
-            : 'http://localhost:8080/review/en'
+            ? 'https://tasis-al-bina.onrender.com/review/ar'
+            : 'https://tasis-al-bina.onrender.com/review/en'
 
         const response = await fetch(apiUrl)
         const data: ReviewResponse = await response.json()

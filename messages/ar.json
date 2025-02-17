@@ -90,6 +90,8 @@
   },
   
   "unitDetails": {
+    "certifiedByWafi": "موثق من وافي",
+
     "loading": "جاري التحميل...",
     "price": "السعر",
     "currency": "ريال",
@@ -111,14 +113,18 @@
       "livingRoom": "الصالة",
       "callUs": "اتصل بنا",
       "whatsapp": "واتساب",
-      "email": "البريد الإلكتروني"
+      "email": "البريد الإلكتروني",
+      "minutes": "دقائق"
     },
+
     "contact": {
       "callUs": "اتصل بنا",
       "whatsapp": "واتساب",
-      "email": "البريد الإلكتروني"
+      "email": "البريد الإلكتروني",
+      "minutes": "دقيقة"
     }
   },
+  
   "consultation": {
     "title": "موعد الاستشارة العقارية",
     "question": "ما هو نوع الاستشارة التي تريدها؟",
@@ -209,15 +215,15 @@
   "rooms": "الغرف",
   "bathrooms": "الحمامات",
   "parking": "المواقف",
-  "status": {
-    "Available for sale": "متاح للبيع",
-    "available for rent": "متاح للإيجار",
-    "Reserved": "محجوز",
-    "Under Maintenanc": "تحت الصيانة",
-    "Rented/Leased": "مؤجر",
-    "Sold": "مباع",
-    "Unavailable": "غير متاح"
-  },
+"projectDescription":"نبذه عن المشروع",
+"status": {
+  "Available for sale": "متاح للبيع",
+  "Available for rent": "متاح للإيجار",
+  "Reserved": "محجوز",
+  "Rented": "مؤجر",
+  "Sold": "مباع",
+  "Unavailable": "غير متاح"
+},
   "types": {
     "apartment": "شقة",
     "villa": "فيلا",
@@ -248,6 +254,11 @@
     "project6": {
       "title": "مجالات 39 -حي الملقا"
     }
+  },
+  "locationModal": {
+    "projectLocation": "موقع المشروع",
+    "openInGoogleMaps": "فتح في خرائط قوقل",
+    "close": "إغلاق"
   },
   "about": {
     "title": "من نحن",

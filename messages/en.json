@@ -107,12 +107,16 @@
       "elevator": "Private Elevator",
       "parking": "Parking",
       "waterTank": "Water Tanks",
-      "livingRoom": "Living Room"
+      "livingRoom": "Living Room",
+      "minutes": "minutes",
+      "certifiedByWafi": "Certified by WAFI"
+
     },
     "contact": {
       "callUs": "Call Us",
       "whatsapp": "WhatsApp",
-      "email": "Email"
+      "email": "Email",
+      "minutes": "minutes"
     }
   },
   "projectDetails": {
@@ -125,11 +129,13 @@
     "rooms": "Rooms",
     "bathrooms": "Bathrooms",
     "parking": "Parking",
+    "projectDescription":"project description",
+
     "status": {
       "Available for sale": "Available for sale",
-      "available for rent": "Available for rent",
+      "Available for rent": "Available for rent",
       "Reserved": "Reserved",
-      "Rented/Leased": "Rented/Leased",
+      "Rented": "Rented",
       "Sold": "Sold",
       "Unavailable": "Unavailable"
     },
@@ -140,6 +146,13 @@
       "shop": "Shop"
     }
   },
+  
+    "locationModal": {
+      "projectLocation": "Project Location",
+      "openInGoogleMaps": "Open in Google Maps",
+      "close": "Close"
+    },
+  
   "consultation": {
     "question": "Do you want to schedule a consultation ",
     "cta":"Let's Start",

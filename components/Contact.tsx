@@ -43,7 +43,7 @@ export default function Contact() {
 
     try {
       const validatedData = contactSchema.parse(formData)
-      const response = await fetch('http://localhost:8080/message/create', {
+      const response = await fetch('https://tasis-al-bina.onrender.com/message/create', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(validatedData)

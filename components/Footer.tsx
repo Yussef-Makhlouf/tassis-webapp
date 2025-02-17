@@ -43,7 +43,7 @@ export default function Footer() {
     setError('');
 
     try {
-      const response = await fetch('http://localhost:8080/newsletter/create', {
+      const response = await fetch('https://tasis-al-bina.onrender.com/newsletter/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -26,8 +26,8 @@ export default function Projects() {
     const fetchCategories = async () => {
       try {
         const apiUrl = locale === 'ar'
-          ? 'http://localhost:8080/category/getAllCategoryTitleImageAR/?page=1&size=9'
-          : 'http://localhost:8080/category/getAllCategoryTitleImageEN?page=1&size=9';
+          ? 'https://tasis-al-bina.onrender.com/category/getAllCategoryTitleImageAR/?page=1&size=9'
+          : 'https://tasis-al-bina.onrender.com/category/getAllCategoryTitleImageEN?page=1&size=9';
 
         const response = await fetch(apiUrl);
         const data = await response.json();

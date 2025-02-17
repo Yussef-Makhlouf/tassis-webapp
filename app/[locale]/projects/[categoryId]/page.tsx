@@ -1,3 +1,4 @@
+
 // 'use client';
 // import Image from "next/image";
 // import Navbar from "@/components/Navbar";
@@ -70,9 +71,9 @@
 //       try {
 //         const [unitsResponse, categoryResponse] = await Promise.all([
 //           fetch(locale === 'ar'
-//             ? `http://localhost:8080/unit/getAllUnitByCategoryIdAR/${categoryId}`
-//             : `http://localhost:8080/unit/getAllUnitByCategoryIdEN/${categoryId}`),
-//           fetch(`http://localhost:8080/category/getOne/${categoryId}`)
+//             ? `https://tasis-al-bina.onrender.com/unit/getAllUnitByCategoryIdAR/${categoryId}`
+//             : `https://tasis-al-bina.onrender.com/unit/getAllUnitByCategoryIdEN/${categoryId}`),
+//           fetch(`https://tasis-al-bina.onrender.com/category/getOne/${categoryId}`)
 //         ]);
 
 //         const unitsData = await unitsResponse.json();
@@ -91,18 +92,19 @@
 //   }, [locale, categoryId]);
 
 //   if(loading) {
-//     return <div>{t('loading')}</div>;
+//     return (
+//       <div className="flex justify-center items-center h-screen">
+//         <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-[#AA9554]"></div>
+//       </div>
+//     );
 //   }
 
-//   function getStatusStyle(status: string) {
-//     throw new Error("Function not implemented.");
-//   }
 
 //   return (
 //     <ClientOnly>
 //       <main className="min-h-screen bg-white">
 //         <Navbar />
-        
+
 //         <div className="container max-w-[1312px] mx-auto px-4 pt-32">
 //           <div className="text-center mb-8">
 //             <h1 className="text-[#20284D] text-[40px] font-bold">
@@ -123,8 +125,10 @@
 //               </div>
 //             </div>
 
-//             <div className="text-[#20284D] text-[18px] max-w-xl">
+//             <div className="text-[#20284D] text-[18px] max-w-xl mb-4">
+//               <div className="flex items-center gap-2 mb-4 ">
 //               <p>{category?.description}</p>
+//               </div>
 //             </div>
 //           </div>
 
@@ -139,14 +143,14 @@
 //                     fill
 //                     className="object-cover hover:scale-110 transition-transform duration-500"
 //                   />
-//                   <div className={`absolute top-4 left-4 px-6 py-2 rounded-md font-bold text-[20px] ${getStatusStyle(unit.status)}`}>
-//                     {t(`status.${unit.status}`)}
+//                   <div className={`absolute top-4 left-4 px-6 py-2 rounded-md font-bold text-[20px] ${(unit.status)}`}>
+//                     {t(`status.${unit.status}`)} 
 //                   </div>
 //                 </div>
 
 //                 <div className="p-6">
 //                   <h2 className="text-[#20284D] text-[25px] font-bold text-center mb-6">
-//                     {unit.title} - {t(`types.${unit.type}`)}
+//                     {/*  - {t(`types.${unit.type}`)} */}{unit.title}
 //                   </h2>
 
 //                   <div className="flex justify-center gap-12 mb-6">
@@ -167,7 +171,7 @@
 //                       <span className="text-[#20284D] text-[16px]">{unit.parking}</span>
 //                     </div>
 //                   </div>
-                  
+
 //                   <div className="flex flex-row-reverse items-center justify-between gap-4">
 //                     <div className="flex items-center gap-2">
 //                       <span className="text-[#20284D] text-[24px] font-bold">{unit.price}</span>
@@ -246,7 +250,7 @@ interface Unit {
   cameras: number;
   waterTank: number;
   guard: number;
-  nearbyPlaces: [{place: string, timeInMinutes: number}];
+  nearbyPlaces: [{ place: string, timeInMinutes: number }];
 }
 
 export default function ProjectDetails() {
@@ -256,7 +260,6 @@ export default function ProjectDetails() {
   const [units, setUnits] = useState<Unit[]>([]);
   const [category, setCategory] = useState<Category | null>(null);
   const [loading, setLoading] = useState(true);
-
   const categoryId = params?.categoryId as string;
 
   useEffect(() => {
@@ -264,14 +267,12 @@ export default function ProjectDetails() {
       try {
         const [unitsResponse, categoryResponse] = await Promise.all([
           fetch(locale === 'ar'
-            ? `http://localhost:8080/unit/getAllUnitByCategoryIdAR/${categoryId}`
-            : `http://localhost:8080/unit/getAllUnitByCategoryIdEN/${categoryId}`),
-          fetch(`http://localhost:8080/category/getOne/${categoryId}`)
+            ? `https://tasis-al-bina.onrender.com/unit/getAllUnitByCategoryIdAR/${categoryId}`
+            : `https://tasis-al-bina.onrender.com/unit/getAllUnitByCategoryIdEN/${categoryId}`),
+          fetch(`https://tasis-al-bina.onrender.com/category/getOne/${categoryId}`)
         ]);
-
         const unitsData = await unitsResponse.json();
         const categoryData = await categoryResponse.json();
-
         setUnits(unitsData.units);
         setCategory(categoryData.category);
         setLoading(false);
@@ -280,11 +281,10 @@ export default function ProjectDetails() {
         setLoading(false);
       }
     };
-
     fetchData();
   }, [locale, categoryId]);
 
-  if(loading) {
+  if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
         <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-[#AA9554]"></div>
@@ -292,12 +292,10 @@ export default function ProjectDetails() {
     );
   }
 
-
   return (
     <ClientOnly>
       <main className="min-h-screen bg-white">
         <Navbar />
-        
         <div className="container max-w-[1312px] mx-auto px-4 pt-32">
           <div className="text-center mb-8">
             <h1 className="text-[#20284D] text-[40px] font-bold">
@@ -306,27 +304,34 @@ export default function ProjectDetails() {
             <div className="w-[224px] h-1 bg-[#AA9554] mx-auto mt-4" />
           </div>
 
-          <div className="flex justify-between items-start mb-8">
+          <div className="flex flex-col md:flex-column justify-between items-start gap-8 mb-12">
             <div className="flex flex-col gap-3 text-[#20284D] text-[18px]">
               <div className="flex items-center gap-2">
                 <Image src="/sizes/location1.png" alt={t('location')} width={20} height={20} />
                 <span>{category?.location}</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Image src="/sizes/location2.png" alt={t('area')} width={20} height={20} />
-                <span>{t('area')} {category?.area} {t('areaUnit')}</span>
+              <div className="flex items-center gap-2 ">
+                <Image src="/sizes/location2.png" alt={t('area')} width={30} height={30} />
+                <span className="text-[18px]">{t('area')} {category?.area} {t('areaUnit')}</span>
               </div>
             </div>
-
-            <div className="text-[#20284D] text-[18px] max-w-xl">
-              <p>{category?.description}</p>
+            <div className="flex flex-col gap-3 text-[#20284D] text-[18px]">
+              <div className="flex items-center gap-2">
+                <h5>{t('projectDescription')}:</h5>
+              </div>
+            </div>
+            <div className="text-[#20284D] text-[18px] max-w-xl p-6 border-2 border-[#20284D] rounded-lg shadow-md">
+              <p className="leading-relaxed">{category?.description}</p>
             </div>
           </div>
 
-          {/* Units Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             {units.map((unit) => (
-              <div key={unit._id} className="bg-white border-2 border-[#20284D] shadow-lg overflow-hidden hover:scale-[1.02] transition-transform duration-300">
+              <div key={unit._id} className={`relative bg-white border-2 border-[#20284D] shadow-lg overflow-hidden transition-transform duration-300 
+              ${(unit.status === 'Sold' || unit.status === 'مباع' || unit.status === 'Rented' || unit.status === 'مؤجر' || unit.status === 'Unavailable' || unit.status === 'غير متاح' || unit.status === 'Reserved' || unit.status === 'محجوز')
+                  ? 'opacity-90 pointer-events-none'
+                  : 'hover:scale-[1.02]'}`}>
+
                 <div className="relative h-[322px] border-b-2 border-[#20284D]">
                   <Image
                     src={unit.images[0].secure_url}
@@ -334,16 +339,94 @@ export default function ProjectDetails() {
                     fill
                     className="object-cover hover:scale-110 transition-transform duration-500"
                   />
-                  <div className={`absolute top-4 left-4 px-6 py-2 rounded-md font-bold text-[20px] ${(unit.status)}`}>
-                    {t(`status.${unit.status}`)}
-                  </div>
+
+                  {(() => {
+                    switch (unit.status) {
+                      case 'Sold':
+                      case 'مباع':
+                        return (
+                          <>
+                            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm z-10" />
+                            <div className="absolute inset-0 flex items-center justify-center z-20">
+                              <Image
+                                src="/sizes/sold.png"
+                                alt="Sold"
+                                width={180}
+                                height={180}
+                                className="object-contain transform scale-125"
+                              />
+                            </div>
+                          </>
+                        );
+                      case 'Rented':
+                      case 'مؤجر':
+                        return (
+                          <>
+                            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm z-10" />
+                            <div className="absolute inset-0 flex items-center justify-center z-20">
+                              <Image
+                                src="/sizes/hagz.png"
+                                alt="Rented"
+                                width={180}
+                                height={180}
+                                className="object-contain transform scale-125"
+                              />
+                            </div>
+                          </>
+                        );
+                      case 'Available for sale':
+                      case 'متاح للبيع':
+                        return (
+                          <div className="absolute top-4 left-4 px-6 py-2  bg-emerald-500  text-white  font-bold text-[18px] shadow-lg">
+                        {unit.status}
+                          </div>
+                        );
+                      case 'Available for rent':
+                      case 'متاح للإيجار':
+                        return (
+                          <div className="absolute top-4 left-4 px-6 py-2 -2 bg-[#AA9554]  text-white  font-bold text-[18px] shadow-lg">
+                           {unit.status}
+                          </div>
+                        );
+                      case 'Reserved':
+                      case 'محجوز':
+                        return (
+                          <>
+                            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm z-10" />
+                            <div className="absolute inset-0 flex items-center justify-center z-20">
+                              <Image
+                                src="/sizes/hagz.png"
+                                alt="Rented"
+                                width={180}
+                                height={180}
+                                className="object-contain transform scale-125"
+                              />
+                            </div>
+                          </>
+                        );
+                      case 'Unavailable':
+                      case 'غير متاح':
+                        return (
+                          <div className="absolute top-4 left-4 px-6 py-2  bg-[#AA9554]  text-gray-500  font-bold text-[18px] shadow-lg">
+                            {unit.status}
+                          </div>
+                        );
+                      default:
+                        return (
+                          <div className="absolute top-4 left-4 px-6 py-2  bg-emerald-500 text-[#20284D] font-bold text-[18px] shadow-lg">
+                            {unit.status}
+                          </div>
+                        );
+                    }
+                  })()}
                 </div>
 
+                {/* Rest of the card content */}
                 <div className="p-6">
                   <h2 className="text-[#20284D] text-[25px] font-bold text-center mb-6">
-                    {/*  - {t(`types.${unit.type}`)} */}{unit.title}
+                    {unit.title}
                   </h2>
-
+                  {/* Features section */}
                   <div className="flex justify-center gap-12 mb-6">
                     <div className="flex flex-col items-center gap-2">
                       <Image src="/sizes/size3.png" alt={t('area')} width={32} height={32} />
@@ -362,7 +445,8 @@ export default function ProjectDetails() {
                       <span className="text-[#20284D] text-[16px]">{unit.parking}</span>
                     </div>
                   </div>
-                  
+
+                  {/* Price and CTA section */}
                   <div className="flex flex-row-reverse items-center justify-between gap-4">
                     <div className="flex items-center gap-2">
                       <span className="text-[#20284D] text-[24px] font-bold">{unit.price}</span>
@@ -377,10 +461,10 @@ export default function ProjectDetails() {
                   </div>
                 </div>
               </div>
+
             ))}
           </div>
         </div>
-
         <FeatureSection />
         <Footer />
       </main>

@@ -52,7 +52,7 @@ export default function BlogPost() {
       try {
 
         if (!params?.id) return;
-        const response = await fetch(`http://localhost:8080/blog/findOne/${params?.id}`);
+        const response = await fetch(`https://tasis-al-bina.onrender.com/blog/findOne/${params?.id}`);
         const data: BlogResponse = await response.json();
         setBlog(data.blog);
         setLoading(false);
@@ -63,7 +63,7 @@ export default function BlogPost() {
     };
     const fetchRecentBlogs = async () => {
       try {
-        const response = await fetch('http://localhost:8080/blog/getLastThree');
+        const response = await fetch('https://tasis-al-bina.onrender.com/blog/getLastThree');
         const data: RecentBlogsResponse = await response.json();
         setRecentBlogs(data.blogs);
         setRecentBlogsLoading(false);
@@ -81,7 +81,7 @@ export default function BlogPost() {
     setError(error); // Reset error before request
 
     try {
-      const response = await fetch("http://localhost:8080/newsletter/create", {
+      const response = await fetch("https://tasis-al-bina.onrender.com/newsletter/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
