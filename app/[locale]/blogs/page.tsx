@@ -23,6 +23,7 @@ interface Blog {
   customId: string;
   Keywords: string[];
   views: number;
+  
 }
 
 interface BlogResponse {
@@ -38,7 +39,8 @@ export default function BlogsPage() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
   const [totalCount, setTotalCount] = useState(0);
-  const blogsPerPage = 9;
+  const blogsPerPage = 2;
+// const totalPages = Math.ceil(totalCount / blogsPerPage);
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -61,6 +63,7 @@ export default function BlogsPage() {
     fetchBlogs();
   }, [currentPage, locale]);
 
+  
   const totalPages = Math.ceil(totalCount / blogsPerPage);
 
   const formatDate = (dateString: string) => {
@@ -121,13 +124,13 @@ export default function BlogsPage() {
                         </div>
                       </div>
 
-                      <h3 className="text-2xl font-bold text-[#20284D] leading-tight text-left">
-                        {blog.title}
-                      </h3>
+                      <h3 className={`text-2xl font-bold text-[#20284D] leading-tight ${locale === 'ar' ? 'text-right' : 'text-left'}`}>
+  {blog.title}
+</h3>
 
-                      <p className="text-gray-600 leading-relaxed text-left line-clamp-3">
-                        {blog.description}
-                      </p>
+<p className={`text-gray-600 leading-relaxed line-clamp-3 ${locale === 'ar' ? 'text-right' : 'text-left'}`}>
+  {blog.description}
+</p>
 
                       <Link
                         href={`/blogs/${blog._id}`}

@@ -139,7 +139,7 @@ export default function Testimonials() {
                   </div>
 
                   <div className="flex-grow flex flex-col justify-end">
-                    <p className="text-[25px] leading-[48px] text-[#20284D] text-center mb-6">
+                    <p className="text-[20px] leading-[48px] text-[#20284D] text-center mb-6">
                       {review.description}
                     </p>
                     <div className="text-center">

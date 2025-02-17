@@ -71,12 +71,12 @@ export default function Home() {
           </section>
 
           {/* Blog Section */}
-          <section className="py-8 md:py-12 lg:py-8">
+          <section className=" md:py-12 lg:py-8">
             <Blog />
           </section>
 
           {/* Contact Section */}
-          <section className="py-8 md:py-12 lg:py-8">
+          <section className=" md:py-12 lg:py-8">
             <Contact />
           </section>
 

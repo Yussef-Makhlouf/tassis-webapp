@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Contact from "@/components/Contact";
@@ -45,6 +45,7 @@ export default function BlogPost() {
   const [blog, setBlog] = useState<BlogData | null>(null);
   const params = useParams();
   const t = useTranslations('blog');
+  const locale = useLocale();
   const [recentBlogs, setRecentBlogs] = useState<BlogData[]>([]);
   const [recentBlogsLoading, setRecentBlogsLoading] = useState(true);
   useEffect(() => {
@@ -130,7 +131,7 @@ export default function BlogPost() {
 
   return (
     <ClientOnly>
-      <main className="min-h-screen bg-white">
+      <main className="min-h-screen bg-white" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
         <header className="bg-white/95 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 shadow-lg">
           <Navbar />
         </header>
@@ -169,7 +170,7 @@ export default function BlogPost() {
           <div className="container mx-auto max-w-7xl">
             <div className="flex flex-col lg:flex-row gap-12">
               {/* Main Content */}
-              <article className="w-full lg:w-3/4">
+              <article className={`w-full lg:w-3/4 ${locale === 'ar' ? 'text-right' : 'text-left'}`}>
                 <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
                   <div className="relative h-[500px]">
                     <Image
@@ -185,7 +186,7 @@ export default function BlogPost() {
                     <div className="flex items-center justify-end gap-8 text-gray-600 mb-10">
                       <span className="flex items-center gap-3">
                         <span dir="ltr" className="text-base">
-                          {new Date(blog.createdAt).toLocaleDateString('ar-SA')}
+                          {new Date(blog.createdAt).toLocaleDateString(locale === 'ar' ? 'ar-SA' : 'en-US')}
                         </span>
                         <Calendar className="w-5 h-5 text-[#AA9554]" />
                       </span>
@@ -195,18 +196,19 @@ export default function BlogPost() {
                       </span>
                     </div>
 
-                    <h1 className="text-4xl font-bold text-[#20284D] mb-10 text-right leading-relaxed">
+                    <h1 className={`text-4xl font-bold text-[#20284D] mb-10 leading-relaxed`}>
                       {blog.title}
                     </h1>
 
-                    <div className="space-y-10 text-right">
-                      <p className="text-gray-700 text-lg leading-loose">
+                    <div className="space-y-10 text-right" >
+                      <p className={`text-gray-700 text-lg leading-loose ${locale === 'ar' ? 'text-right' : 'text-left'}`}>
                         {blog.description}
                       </p>
 
+
                       {/* Keywords */}
-            
-                      <div className="flex flex-wrap gap-2 justify-end">
+
+                      <div className={`flex flex-wrap gap-2 ${locale === 'ar' ? 'justify-end' : 'justify-start'}`}>
                         {blog?.Keywords && Array.isArray(blog.Keywords) && blog.Keywords.map((keyword, idx) => (
                           <span
                             key={idx}
@@ -247,7 +249,7 @@ export default function BlogPost() {
                           key={recentBlog._id}
                           className="group block"
                         >
-                          <div className="flex gap-4">
+                          <div className="flex gap-4" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
                             <div className="relative h-20 w-20 rounded-lg overflow-hidden flex-shrink-0">
                               <Image
                                 src={recentBlog.Image.secure_url}
@@ -257,18 +259,19 @@ export default function BlogPost() {
                               />
                             </div>
                             <div className="flex-grow">
-                              <h3 className="font-semibold text-[#20284D] group-hover:text-[#AA9554] transition-colors text-right line-clamp-2">
+                              <h4 className={`font-semibold text-[#20284D] group-hover:text-[#AA9554] transition-colors line-clamp-2 ${locale === 'ar' ? 'text-right' : 'text-left'}`}>
                                 {recentBlog.title}
-                              </h3>
-                              <div className="flex items-center justify-end gap-2 mt-2 text-sm text-gray-500">
+                              </h4>
+                              <div className={`flex items-center gap-2 mt-2 text-sm text-gray-500 ${locale === 'ar' ? 'justify-end' : 'justify-start'}`}>
                                 <span dir="ltr">
-                                  {new Date(recentBlog.createdAt).toLocaleDateString('ar-SA')}
+                                  {new Date(recentBlog.createdAt).toLocaleDateString(locale === 'ar' ? 'ar-SA' : 'en-US')}
                                 </span>
                                 <Calendar className="w-4 h-4 text-[#AA9554]" />
                               </div>
                             </div>
                           </div>
                         </Link>
+
                       ))
                     )}
                   </div>
