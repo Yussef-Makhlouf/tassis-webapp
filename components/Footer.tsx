@@ -9,10 +9,10 @@ import { useLocale } from 'next-intl';
 import ClientOnly from './ClientOnly';
 
 const socialLinks = [
-  { icon: '/facebook.svg', name: 'Facebook', url: '#' },
-  { icon: '/instagram.svg', name: 'Instagram', url: '#' },
+  { icon: '/Facebook.svg', name: 'Facebook', url: '#' },
+  { icon: '/Instagram.svg', name: 'Instagram', url: '#' },
   { icon: '/Twitter Bird.svg', name: 'Twitter', url: '#' },
-  { icon: '/tiktok.svg', name: 'TikTok', url: '#' }
+  { icon: '/Tiktok.svg', name: 'TikTok', url: '#' }
 ];
 
 const quickLinks = [
