@@ -137,7 +137,7 @@ export default function BlogPost() {
         </header>
 
         {/* Hero Section */}
-        <section className="relative h-[400px] bg-[url('/Header1.png')] bg-cover bg-fixed bg-center">
+        <section className="relative h-[400px] bg-[url('/features.png')] bg-cover bg-fixed bg-center">
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/40" />
           <div className="container mx-auto px-4 h-full flex items-center justify-center relative z-10">
             <div className="text-center space-y-6">
