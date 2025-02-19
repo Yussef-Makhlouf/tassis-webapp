@@ -248,7 +248,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className="text-center space-y-3 text-lg opacity-90">
           <p>{t('footer.copyright')}</p>
-          <p>{t('footer.madeBy')}</p>
+          <a href="https://www.tarmeeztech.com/ar">{t('footer.madeBy')}</a>
         </div>
       </div>
     </footer>
