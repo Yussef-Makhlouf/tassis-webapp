@@ -79,9 +79,9 @@ export default function Navbar() {
             >
               {locale === 'ar' ? 'EN' : 'عربي'}
             </button>
-            <button className="border border-[#AA9554] p-1.5 sm:p-2 rounded-md text-[#AA9554] hover:bg-[#AA9554] hover:text-white transition-all duration-300">
+{/*             <button className="border border-[#AA9554] p-1.5 sm:p-2 rounded-md text-[#AA9554] hover:bg-[#AA9554] hover:text-white transition-all duration-300">
               <Search className="w-4 h-4 sm:w-5 sm:h-5" />
-            </button>
+            </button> */}
             <button 
               onClick={() => setIsOpen(!isOpen)}
               className="md:hidden border border-[#AA9554] p-1.5 sm:p-2 rounded-md text-[#AA9554] hover:bg-[#AA9554] hover:text-white transition-all duration-300"
