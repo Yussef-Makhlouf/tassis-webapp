@@ -12,7 +12,7 @@ const socialLinks = [
   { icon: '/Facebook.svg', name: 'Facebook', url: '#' },
   { icon: '/Instagram.svg', name: 'Instagram', url: '#' },
   { icon: '/Twitter Bird.svg', name: 'Twitter', url: '#' },
-  { icon: '/Tiktok.svg', name: 'TikTok', url: '#' }
+  { icon: '/Tiktok.jpg', name: 'TikTok', url: '#' }
 ];
 
 const quickLinks = [
