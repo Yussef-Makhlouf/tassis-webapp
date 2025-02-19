@@ -84,7 +84,7 @@ export default function BlogsPage() {
         <Navbar />
       </header>
       <Suspense fallback={<Loading />}>
-        <section className="relative mt-[90px] h-[285px] bg-[url('/Header1.png')] bg-cover bg-center">
+        <section className="relative mt-[90px] h-[285px] bg-[url('/features.png')] bg-cover bg-center">
           <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
             <h1 className="text-4xl md:text-5xl font-bold text-white">{t('title')}</h1>
           </div>
