@@ -7,11 +7,11 @@ import { useEffect, useState } from 'react'
 
 const features = [
   { title: { ar: "قريب من جميع الخدمات", en: "Close to All Services" }, icon: "/service.svg" },
-  { title: { ar: "مدخل وخزانات وعدادات وصكوك مستقلة", en: "Independent Entrance, Tanks, Meters & Deeds" }, icon: "/upgrade.svg" },
+  { title: { ar: "مدخل وخزانات وعدادات وصكوك مستقلة", en: "Independent Entrance, Tanks, Meters & Deeds" }, icon: "/Upgrade.svg" },
   { title: { ar: "كراج سيارة", en: "Car Garage" }, icon: "/TaxiRank.svg" },
   { title: { ar: "حدائق جانبية", en: "Side Gardens" }, icon: "/ParkBench.svg" },
-  { title: { ar: "إشراف الأعمال من قبل مهندسين معتمدين", en: "Work Supervision by Certified Engineers" }, icon: "/engineer.svg" },
-  { title: { ar: "مصعد راكب للدور العلوي", en: "Passenger Elevator to Upper Floor" }, icon: "/elevator.svg" }
+  { title: { ar: "إشراف الأعمال من قبل مهندسين معتمدين", en: "Work Supervision by Certified Engineers" }, icon: "/Engineer.svg" },
+  { title: { ar: "مصعد راكب للدور العلوي", en: "Passenger Elevator to Upper Floor" }, icon: "/Elevator.svg" }
 ]
 
 export default function FeatureSection() {
