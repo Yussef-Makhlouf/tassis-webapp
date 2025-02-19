@@ -6,7 +6,7 @@ import { useLocale } from 'next-intl'
 import { useEffect, useState } from 'react'
 
 const features = [
-  { title: { ar: "قريب من جميع الخدمات", en: "Close to All Services" }, icon: "/service.svg" },
+  { title: { ar: "قريب من جميع الخدمات", en: "Close to All Services" }, icon: "/Service.svg" },
   { title: { ar: "مدخل وخزانات وعدادات وصكوك مستقلة", en: "Independent Entrance, Tanks, Meters & Deeds" }, icon: "/Upgrade.svg" },
   { title: { ar: "كراج سيارة", en: "Car Garage" }, icon: "/TaxiRank.svg" },
   { title: { ar: "حدائق جانبية", en: "Side Gardens" }, icon: "/ParkBench.svg" },
