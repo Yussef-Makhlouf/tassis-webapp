@@ -485,7 +485,7 @@ const ProjectPage = ({ params }: { params: { unitId: string } }) => {
 
           <div className="grid grid-cols-1 lg:grid-cols-[487px_759px] gap-6 lg:gap-[68px] mb-8 sm:mb-12">
             <div className="flex flex-col gap-4 order-2 lg:order-1">
-              <div className="bg-white rounded-[10px] p-4 sm:p-6 border-2 border-[#20284D]">
+              <div className="bg-white  rounded-[10px] p-4 sm:p-6 border-2 border-[#20284D]">
                 <p className="text-[18px] sm:text-[22px] md:text-[25px] leading-relaxed md:leading-[47px] text-right font-semibold mb-6 sm:mb-8 text-[#20284D]">
                   {unit.description}
                 </p>

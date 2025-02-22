@@ -17,9 +17,9 @@ export default function Consultation() {
     <ClientOnly>
     <>
    
-      <div className="relative w-full py-12 md:py-20 lg:py-24 px-4">
-        <div className="max-w-[1306px] mx-auto bg-[#20284D]/90 rounded-[25px] md:rounded-[50px] py-12 md:py-16 lg:py-20">
-          <div className="flex flex-col items-center justify-center text-center px-4">
+      <div className="relative w-full px-4 ">
+        <div className="max-w-[1306px] mx-auto bg-[#20284D]/90 rounded-[25px] md:rounded-[50px]  ">
+          <div className="flex flex-col items-center justify-center text-center px-4 py-16">
             <h3 className="text-xl md:text-2xl lg:text-[25px] font-bold text-white mb-4 md:mb-6 lg:mb-8">
               {t('title')}
             </h3>

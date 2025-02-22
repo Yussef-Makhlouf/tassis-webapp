@@ -67,7 +67,7 @@ export default function Blog() {
 
   return (
     <ClientOnly>
-    <section className="py-24">
+    <section >
       <div className="container mx-auto px-4 lg:px-8">
         {/* Section Title */}
         <div className="text-center mb-20">

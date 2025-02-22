@@ -98,19 +98,19 @@ export default function Navbar() {
           onClick={() => setIsOpen(false)} 
         />
 
-        <div className={`absolute top-20 ${locale === 'ar' ? 'right-0' : 'left-0'} w-4/5 max-w-sm bg-white shadow-xl ${
-          locale === 'ar' ? 'rounded-l-2xl' : 'rounded-r-2xl'
-        } transition-transform duration-300 ease-in-out transform md:hidden ${
+        <div className={`fixed top-0 ${locale === 'ar' ? 'right-0' : 'left-0'} h-screen w-[85%] max-w-sm bg-white shadow-xl ${
+          locale === 'ar' ? 'rounded-l-3xl' : 'rounded-r-3xl'
+        } transition-transform duration-300 ease-out transform md:hidden ${
           isOpen ? 'translate-x-0' : locale === 'ar' ? 'translate-x-full' : '-translate-x-full'
         }`}>
-          <div className="p-4 sm:p-6">
-            <ul className="space-y-2 sm:space-y-4" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+          <div className="p-6 pt-24">
+            <ul className="space-y-4" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
               {navItems.map((item) => (
                 <li key={item.text}>
                   <Link 
                     href={item.href}
                     onClick={() => setIsOpen(false)}
-                    className={`block text-base sm:text-lg font-medium px-4 sm:px-6 py-3 sm:py-4 rounded-xl transition-all duration-300 ${
+                    className={`block text-lg font-medium px-6 py-4 rounded-xl transition-all duration-300 ${
                       item.active 
                         ? "bg-[#20284D] text-[#AA9554]" 
                         : "text-[#20284D] hover:bg-[#20284D]/5 hover:text-[#AA9554]"

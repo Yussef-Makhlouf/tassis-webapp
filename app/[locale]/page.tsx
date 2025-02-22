@@ -1,4 +1,3 @@
-'use client'
 // import { useState } from "react";
 import AboutUs from "@/components/AboutUs";
 import Blog from "@/components/Blog";
@@ -23,7 +22,6 @@ export default function Home() {
   return (
     <div 
       className="min-h-screen w-full bg-white overflow-x-hidden" 
-      dir="rtl" 
       style={{ fontFamily: 'Cairo, sans-serif' }}
     >
       <Navbar />
@@ -33,59 +31,59 @@ export default function Home() {
       </div>
 
       {/* Main Content with Responsive Spacing */}
-      <main className="">
-        <div className="space-y-16 md:space-y-24 lg:space-y-32">
+      <main>
+        <div className="space-y-24">
           {/* Cards Grid Section */}
-          <section className="py-8 md:py-12 lg:py-8">
+          <section className="py-16">
             <FeatureCards />
           </section>
 
           {/* Projects Section */}
-          <section className="py-8 md:py-12 lg:py-8">
+          <section className="py-16">
             <Projects />
           </section>
 
           {/* About Section */}
-          <section className="py-8 md:py-12 lg:py-8">
+          <section className="py-16">
             <AboutUs />
           </section>
 
           {/* Consultation Section */}
-          <section className="py-8 md:py-12 lg:py-8">
+          <section className="py-16">
             <Consultation />
           </section>
 
           {/* Services Section */}
-          <section className="py-8 md:py-12 lg:py-8">
+          <section className="py-16">
             <Services />
           </section>
 
           {/* Testimonials Section */}
-          <section className="py-8 md:py-12 lg:py-8">
+          <section className="py-16">
             <Testimonials />
           </section>
 
           {/* Partners Section */}
-          <section className="py-8 md:py-12 lg:py-8">
+          <section className="py-16">
             <Partners />
           </section>
 
           {/* Blog Section */}
-          <section className=" md:py-12 lg:py-8">
+          <section className="py-16">
             <Blog />
           </section>
 
           {/* Contact Section */}
-          <section className=" md:py-12 lg:py-8">
+          <section className="py-16">
             <Contact />
           </section>
 
           {/* FAQ Section */}
-          <section className="py-8 md:py-12 lg:py-8">
+          <section className="py-16">
             <FAQ />
           </section>
         </div>
-<FeatureSection />
+        <FeatureSection />
         {/* Footer Section */}
         <Footer />
       </main>

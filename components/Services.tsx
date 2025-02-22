@@ -27,7 +27,7 @@ export default function Services() {
 
   return (
     <ClientOnly>
-    <section className="py-16 md:py-20 lg:py-24">
+    <section >
       <div className="container mx-auto px-4">
         <div className="text-center mb-12 md:mb-16 lg:mb-20">
           <h2 className="text-2xl md:text-3xl lg:text-[40px] font-bold text-[#20284D] leading-tight mb-4 max-w-[588px] mx-auto">

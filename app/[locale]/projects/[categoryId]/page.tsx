@@ -320,7 +320,7 @@ export default function ProjectDetails() {
                 <h5>{t('projectDescription')}:</h5>
               </div>
             </div>
-            <div className="text-[#20284D] text-[18px] max-w-xl p-6 border-2 border-[#20284D] rounded-lg shadow-md">
+            <div className="text-[#20284D] text-[18px]  p-6 border-2 border-[#20284D] rounded-lg shadow-md w-full">
               <p className="leading-relaxed">{category?.description}</p>
             </div>
           </div>
