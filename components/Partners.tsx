@@ -39,7 +39,7 @@ export default function Partners() {
   const t = useTranslations('partners');
 
   return (
-    <section className="py-20 overflow-hidden bg-white" dir="ltr">
+    <section className="overflow-hidden bg-white" dir="ltr">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16" dir="rtl">
           <h2 className="text-4xl font-bold text-[#20284D] mb-4">{t('title')}</h2>

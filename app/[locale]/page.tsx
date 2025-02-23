@@ -32,54 +32,54 @@ export default function Home() {
 
       {/* Main Content with Responsive Spacing */}
       <main>
-        <div className="space-y-24">
+        <div className="space-y-16">
           {/* Cards Grid Section */}
-          <section className="py-16">
+          <section className=" py-14">
             <FeatureCards />
           </section>
 
           {/* Projects Section */}
-          <section className="py-16">
+          <section className=" py-14">
             <Projects />
           </section>
 
           {/* About Section */}
-          <section className="py-16">
+          <section className=" py-14">
             <AboutUs />
           </section>
 
           {/* Consultation Section */}
-          <section className="py-16">
+          <section className=" py-14">
             <Consultation />
           </section>
 
           {/* Services Section */}
-          <section className="py-16">
+          <section className=" py-14">
             <Services />
           </section>
 
           {/* Testimonials Section */}
-          <section className="py-16">
+          <section className=" py-14">
             <Testimonials />
           </section>
 
           {/* Partners Section */}
-          <section className="py-16">
+          <section className=" py-14">
             <Partners />
           </section>
 
           {/* Blog Section */}
-          <section className="py-16">
+          <section className=" py-14">
             <Blog />
           </section>
 
           {/* Contact Section */}
-          <section className="py-16">
+          <section className=" py-14">
             <Contact />
           </section>
 
           {/* FAQ Section */}
-          <section className="py-16">
+          <section className=" py-14">
             <FAQ />
           </section>
         </div>

@@ -183,7 +183,7 @@ export default function AboutUs() {
 
   return (
     <ClientOnly>
-    <section className="py-12 md:py-20 bg-white">
+    <section className=" bg-white">
       <div className="container mx-auto px-4">
         <div className={`flex flex-col lg:flex-row${isRTL ? '-reverse' : ''} items-start gap-8 lg:gap-16 mb-16 lg:mb-24`}>
           <div className="w-full lg:w-1/2">

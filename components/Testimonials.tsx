@@ -78,7 +78,7 @@ export default function Testimonials() {
 
   return (
     <ClientOnly>
-    <section className="py-20 bg-white" dir={isRTL ? 'rtl' : 'ltr'}>
+    <section className=" bg-white" dir={isRTL ? 'rtl' : 'ltr'}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-[#20284D] mb-4 font-cairo drop-shadow-lg">

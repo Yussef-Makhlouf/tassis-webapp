@@ -47,7 +47,7 @@ export default function Projects() {
   }, [locale]);
 
   return (
-    <section className="py-16 sm:py-20 md:py-24 lg:py-28 bg-white overflow-hidden" dir={isRTL ? 'rtl' : 'ltr'}>
+    <section className="  bg-white overflow-hidden" dir={isRTL ? 'rtl' : 'ltr'}>
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="text-center mb-12 sm:mb-16 md:mb-20">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-bold text-[#20284D] mb-3 sm:mb-4">
