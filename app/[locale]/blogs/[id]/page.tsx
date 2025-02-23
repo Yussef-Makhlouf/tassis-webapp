@@ -108,7 +108,7 @@ export default function BlogPost() {
   if (loading) {
     return (
       <ClientOnly>
-        <main className="min-h-screen bg-white">
+        <main className="min-h-screen bg-white w-full">
           <Navbar />
           <div className="pt-32 px-4">
             <div className="animate-pulse max-w-7xl mx-auto">
@@ -131,27 +131,27 @@ export default function BlogPost() {
 
   return (
     <ClientOnly>
-      <main className="min-h-screen bg-white" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-        <header className="bg-white/95 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 shadow-lg">
+      <main className="min-h-screen bg-white w-full" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+        <header className="bg-white/95 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 shadow-lg w-full">
           <Navbar />
         </header>
 
-        {/* Hero Section */}
-        <section className="relative h-[400px] bg-[url('/features.png')] bg-cover bg-fixed bg-center">
+        {/* Hero Section - Full Width */}
+        <section className="relative h-[50vh] md:h-[60vh] w-full bg-[url('/features.png')] bg-cover bg-fixed bg-center">
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/40" />
-          <div className="container mx-auto px-4 h-full flex items-center justify-center relative z-10">
+          <div className="w-full max-w-[2000px] mx-auto px-4 h-full flex items-center justify-center relative z-10">
             <div className="text-center space-y-6">
-              <h1 className="text-5xl md:text-6xl font-bold text-white">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white">
                 {t('blogDetails')}
               </h1>
-              <div className="w-[224px] h-[3px] bg-[#AA9554] mx-auto rounded-full shadow-lg" />
+              <div className="w-[150px] sm:w-[224px] h-[3px] bg-[#AA9554] mx-auto rounded-full shadow-lg" />
             </div>
           </div>
         </section>
 
-        {/* Breadcrumb */}
-        <div className="bg-gray-50 border-b">
-          <div className="container mx-auto px-4 py-4">
+        {/* Breadcrumb - Full Width */}
+        <div className="bg-gray-50 border-b w-full">
+          <div className="w-full max-w-[2000px] mx-auto px-4 py-4">
             <div className="flex items-center justify-end gap-2 text-sm text-gray-600">
               <Link href="/" className="hover:text-[#AA9554] transition-colors">
                 {t('home')}
@@ -166,13 +166,14 @@ export default function BlogPost() {
           </div>
         </div>
 
-        <section className="py-16 px-4">
-          <div className="container mx-auto max-w-7xl">
-            <div className="flex flex-col lg:flex-row gap-12">
+        {/* Main Content Section - Full Width */}
+        <section className="py-8 sm:py-12 md:py-16 px-4 w-full">
+          <div className="w-full max-w-[2000px] mx-auto">
+            <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
               {/* Main Content */}
               <article className={`w-full lg:w-3/4 ${locale === 'ar' ? 'text-right' : 'text-left'}`}>
                 <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
-                  <div className="relative h-[500px]">
+                  <div className="relative h-[300px] sm:h-[400px] md:h-[500px] w-full">
                     <Image
                       src={blog.Image.secure_url}
                       alt={blog.title}
@@ -182,8 +183,8 @@ export default function BlogPost() {
                     />
                   </div>
 
-                  <div className="p-8 lg:p-12" >
-                    <div className="flex items-center justify-end gap-8 text-gray-600 mb-10">
+                  <div className="p-4 sm:p-6 md:p-8 lg:p-12">
+                    <div className="flex items-center justify-end gap-4 sm:gap-8 text-gray-600 mb-6 sm:mb-10 flex-wrap">
                       <span className="flex items-center gap-3">
                         <span dir="ltr" className="text-base">
                           {new Date(blog.createdAt).toLocaleDateString(locale === 'ar' ? 'ar-SA' : 'en-US')}
@@ -196,18 +197,16 @@ export default function BlogPost() {
                       </span>
                     </div>
 
-                    <h1 className={`text-4xl font-bold text-[#20284D] mb-10 leading-relaxed`}>
+                    <h1 className={`text-2xl sm:text-3xl md:text-4xl font-bold text-[#20284D] mb-6 sm:mb-10 leading-relaxed`}>
                       {blog.title}
                     </h1>
 
-                    <div className="space-y-10 text-right" >
-                      <p className={`text-gray-700 text-lg leading-loose ${locale === 'ar' ? 'text-right' : 'text-left'}`}>
+                    <div className="space-y-6 sm:space-y-10">
+                      <p className={`text-gray-700 text-base sm:text-lg leading-loose ${locale === 'ar' ? 'text-right' : 'text-left'}`}>
                         {blog.description}
                       </p>
 
-
                       {/* Keywords */}
-
                       <div className={`flex flex-wrap gap-2 ${locale === 'ar' ? 'justify-end' : 'justify-start'}`}>
                         {blog?.Keywords && Array.isArray(blog.Keywords) && blog.Keywords.map((keyword, idx) => (
                           <span
@@ -218,15 +217,14 @@ export default function BlogPost() {
                           </span>
                         ))}
                       </div>
-
                     </div>
                   </div>
                 </div>
               </article>
 
               {/* Sidebar */}
-              <aside className="w-full lg:w-1/4 space-y-8">
-                <div className="bg-white rounded-2xl shadow-lg p-6 border-t-4 border-[#AA9554]">
+              <aside className="w-full lg:w-1/4 space-y-6 sm:space-y-8">
+                <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 border-t-4 border-[#AA9554]">
                   <h5 className="text-2xl font-bold text-[#20284D] mb-6 text-right">
                     {t('recentPosts')}
                   </h5>
