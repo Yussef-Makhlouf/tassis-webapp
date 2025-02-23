@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 const features = [
   {
     key: "goals",
-    icon: "/curved/medal-star.svg",
+    icon: "/mission-icon.svg",
     style: "bg-[#20284D]",
     styleText: "text-[#AA9554]"
   },

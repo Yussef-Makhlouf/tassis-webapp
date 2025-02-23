@@ -1,3 +1,4 @@
+import FloatingButtons from '@/components/floating_butttons';
 import { NextIntlClientProvider } from 'next-intl'
 import { notFound } from 'next/navigation'
 
@@ -21,6 +22,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider locale={locale} messages={messages}>
           {children}
         </NextIntlClientProvider>
+        <FloatingButtons />
       </body>
     </html>
   );

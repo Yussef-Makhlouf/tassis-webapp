@@ -12,7 +12,7 @@ import Partners from "@/components/Partners";
 import Projects from "@/components/Projects";
 import Services from "@/components/Services";
 import Testimonials from "@/components/Testimonials";
-import FeatureSection from "@/components/FeatureSection";
+// import FeatureSection from "@/components/FeatureSection";
 // import Pagination from "@/components/Pagination";
 
 
@@ -83,7 +83,7 @@ export default function Home() {
             <FAQ />
           </section>
         </div>
-        <FeatureSection />
+        {/* <FeatureSection /> */}
         {/* Footer Section */}
         <Footer />
       </main>

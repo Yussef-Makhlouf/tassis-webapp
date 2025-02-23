@@ -94,8 +94,8 @@ export default function Hero() {
                          font-bold text-white 
                          leading-[1.4] tracking-wide
                          drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)]">
-              <span className="block mb-4">{t('hero.title')}</span>
-              <span className="block text-[#AA9554]">{t('hero.subtitle')}</span>
+              <span className=" mb-4">{t('hero.title')} </span>
+              <span className=" text-[#AA9554]">{t('hero.subtitle')}</span>
             </h1>
 
             {/* Description */}

@@ -9,10 +9,11 @@ import { useLocale } from 'next-intl';
 import ClientOnly from './ClientOnly';
 
 const socialLinks = [
-  { icon: '/Facebook.svg', name: 'Facebook', url: '#' },
-  { icon: '/Instagram.svg', name: 'Instagram', url: '#' },
-  { icon: '/Twitter Bird.svg', name: 'Twitter', url: '#' },
-  { icon: '/TikTok.svg', name: 'TikTok', url: '#' }
+  { icon: '/Facebook.svg', name: 'Facebook', url: 'https://www.facebook.com/profile.php?id=61573462054108' },
+  { icon: '/Instagram.svg', name: 'Instagram', url: 'https://www.instagram.com/tasisalbina' },
+  { icon: '/Twitter Bird.svg', name: 'Twitter', url: 'https://x.com/tasisalbina' },
+  { icon: '/TikTok.svg', name: 'TikTok', url: 'https://www.tiktok.com/@tasisalbina' },
+  { icon: '/snap.svg', name: 'snap', url: 'https://www.snapchat.com/add/tasisalbina' }
 ];
 
 const quickLinks = [
@@ -154,7 +155,7 @@ export default function Footer() {
             </ul>
             <div className="mt-8 pt-8 border-t border-[#AA9554]/20">
               <p className="font-bold mb-2">{t('footer.commercialRecord')}</p>
-              <p className="text-lg opacity-90">87878555255</p>
+              <p className="text-lg opacity-90">1010762193</p>
             </div>
           </div>
 

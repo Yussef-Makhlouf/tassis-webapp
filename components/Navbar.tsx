@@ -46,10 +46,10 @@ export default function Navbar() {
         }`}>
           <Link href="/" className="flex-shrink-0">
             <Image 
-              src="/Group.svg" 
+              src="/Group.png" 
               alt="Logo" 
-              width={120} 
-              height={70} 
+              width={130} 
+              height={101} 
               className="object-contain w-auto h-[50px] sm:h-[60px] lg:h-[70px]"
             />
           </Link>

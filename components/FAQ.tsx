@@ -52,7 +52,7 @@ export default function FAQ() {
   }
 
   return (
-    <section className=" bg-white">
+    <section className=" bg-white pb-9">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-[#20284D] mb-4 font-cairo drop-shadow-lg">
