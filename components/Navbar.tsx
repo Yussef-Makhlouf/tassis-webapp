@@ -79,31 +79,48 @@ export default function Navbar() {
             >
               {locale === 'ar' ? 'EN' : 'عربي'}
             </button>
-{/*             <button className="border border-[#AA9554] p-1.5 sm:p-2 rounded-md text-[#AA9554] hover:bg-[#AA9554] hover:text-white transition-all duration-300">
-              <Search className="w-4 h-4 sm:w-5 sm:h-5" />
-            </button> */}
+            
+            {/* Mobile Menu Button - Enhanced */}
             <button 
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden border border-[#AA9554] p-1.5 sm:p-2 rounded-md text-[#AA9554] hover:bg-[#AA9554] hover:text-white transition-all duration-300"
+              className="md:hidden flex items-center gap-2 border-2 border-[#AA9554] px-3 py-2 rounded-lg text-[#AA9554] hover:bg-[#AA9554] hover:text-white transition-all duration-300"
+              aria-label="Toggle menu"
             >
-              {isOpen ? <X className="w-4 h-4 sm:w-5 sm:h-5" /> : <Menu className="w-4 h-4 sm:w-5 sm:h-5" />}
+              <span className="text-sm font-medium hidden sm:inline">القائمة</span>
+              {isOpen ? 
+                <X className="w-5 h-5" /> : 
+                <Menu className="w-5 h-5" />
+              }
             </button>
           </div>
         </div>
 
+        {/* Mobile Menu Overlay - Enhanced */}
         <div 
-          className={`fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
-            isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          className={`fixed inset-0 bg-black/60 backdrop-blur-sm transition-all duration-300 md:hidden ${
+            isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
           }`} 
-          onClick={() => setIsOpen(false)} 
+          onClick={() => setIsOpen(false)}
         />
 
-        <div className={`fixed top-0 ${locale === 'ar' ? 'right-0' : 'left-0'} h-screen w-[85%] max-w-sm bg-white shadow-xl ${
-          locale === 'ar' ? 'rounded-l-3xl' : 'rounded-r-3xl'
-        } transition-transform duration-300 ease-out transform md:hidden ${
-          isOpen ? 'translate-x-0' : locale === 'ar' ? 'translate-x-full' : '-translate-x-full'
-        }`}>
+        {/* Mobile Menu Panel - Enhanced */}
+        <div 
+          className={`fixed top-0 ${locale === 'ar' ? 'right-0' : 'left-0'} h-screen w-[85%] max-w-sm bg-white shadow-2xl ${
+            locale === 'ar' ? 'rounded-l-3xl' : 'rounded-r-3xl'
+          } transition-transform duration-300 ease-out transform md:hidden ${
+            isOpen ? 'translate-x-0' : locale === 'ar' ? 'translate-x-full' : '-translate-x-full'
+          }`}
+        >
           <div className="p-6 pt-24">
+            {/* Close button for mobile menu */}
+            <button
+              onClick={() => setIsOpen(false)}
+              className="absolute top-6 right-6 p-2 rounded-full hover:bg-gray-100 transition-colors duration-200"
+              aria-label="Close menu"
+            >
+              <X className="w-6 h-6 text-[#20284D]" />
+            </button>
+            
             <ul className="space-y-4" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
               {navItems.map((item) => (
                 <li key={item.text}>
