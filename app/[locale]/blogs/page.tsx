@@ -39,7 +39,7 @@ export default function BlogsPage() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
   const [totalCount, setTotalCount] = useState(0);
-  const blogsPerPage = 2;
+  const blogsPerPage = 6;
 // const totalPages = Math.ceil(totalCount / blogsPerPage);
 
   useEffect(() => {
