@@ -8,9 +8,7 @@ const services = [
   { id: 1, key: 'rental' },
   { id: 2, key: 'communication' },
   { id: 3, key: 'maintenance' },
-  { id: 4, key: 'water' },
-  { id: 5, key: 'staff' },
-  { id: 6, key: 'electricity' }
+
 ]
 
 export default function Services() {
@@ -33,9 +31,7 @@ export default function Services() {
           <h2 className="text-2xl md:text-3xl lg:text-[40px] font-bold text-[#20284D] leading-tight mb-4 max-w-[588px] mx-auto">
             {t('afterSaleTitle')}
           </h2>
-          <p className="text-lg md:text-xl lg:text-[20px] text-[#AA9554] max-w-[996px] mx-auto">
-            {t('freeServices')}
-          </p>
+
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-12">
