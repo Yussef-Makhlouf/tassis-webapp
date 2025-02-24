@@ -49,7 +49,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/Group.svg" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="canonical" href="https://tasis-al-bina.com" />
+        <link rel="canonical" href="https://www.tasisalbina.com/ar" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="google" content="notranslate" />
         <meta name="application-name" content="Tasis Al Bina" />
