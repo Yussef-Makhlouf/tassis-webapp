@@ -86,7 +86,7 @@ export default function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-[1400px] mx-auto">
           <div className="w-full h-[600px] rounded-2xl overflow-hidden shadow-lg border-2 border-[#20284D]">
             <iframe
-              src="https://www.google.com/maps/place/24%C2%B040'22.9%22N+46%C2%B048'59.2%22E/@24.6730302,46.8186289,17z/data=!3m1!4b1!4m4!3m3!8m2!3d24.6730302!4d46.8164402?entry=ttu&g_ep=EgoyMDI1MDIyNi4xIKXMDSoASAFQAw%3D%3D"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.8661796873164!2d46.81644022!3d24.67303022!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDQwJzIyLjkiTiA0NsKwNDgnNTkuMiJF!5e0!3m2!1sen!2s!4v1646484800000!5m2!1sen!2s"
               width="100%"
               height="100%"
               style={{ border: 0 }}
