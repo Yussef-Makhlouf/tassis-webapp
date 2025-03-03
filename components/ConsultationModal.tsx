@@ -1,11 +1,28 @@
-
 'use client'
 import { useState, useEffect } from 'react'
 import { ArrowLeftRight, X } from 'lucide-react'
 import { z } from 'zod'
 import { motion } from 'framer-motion'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import ClientOnly from './ClientOnly'
+
+interface ConsultationData {
+  type: 'google_meet' | 'phone_call' | 'whatsapp' | 'zoom';
+  selectedDay: string;
+  phone: string;
+  email: string;
+  status: 'قيد الانتظار' | 'مكتملة' | 'ملغية';
+}
+
+interface FormData {
+  meetingMethod: 'google_meet' | 'phone_call' | 'whatsapp' | 'zoom' | '';
+  selectedDay: string;
+  email: string;
+  phone: string;
+  status: string;
+  acceptTerms: boolean;
+  acceptMarketing: boolean;
+}
 
 const contactSchema = z.object({
   email: z.string().email('البريد الإلكتروني غير صحيح'),
@@ -44,16 +61,18 @@ const fadeIn = {
 export default function ConsultationModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const t = useTranslations('consultation')
   const [step, setStep] = useState(1)
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     meetingMethod: '',
     selectedDay: '',
     email: '',
     phone: '',
+    status: '',
     acceptTerms: false,
     acceptMarketing: false,
   })
   const [errors, setErrors] = useState<{ [key: string]: string }>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const locale = useLocale()
 
   useEffect(() => {
     if (step === 4) {
@@ -100,14 +119,51 @@ export default function ConsultationModal({ isOpen, onClose }: { isOpen: boolean
     setIsSubmitting(true)
     try {
       contactSchema.parse(formData)
-      await new Promise(resolve => setTimeout(resolve, 1000))
+      
+      const requestData: ConsultationData = {
+        type: formData.meetingMethod as ConsultationData['type'],
+        selectedDay: formData.selectedDay,
+        phone: formData.phone,
+        email: formData.email,
+        status: 'قيد الانتظار'
+      };
+
+      console.log('Sending data:', requestData);
+
+      const response = await fetch('https://tasis-al-bina.onrender.com/consultation/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(requestData),
+      });
+
+      const responseData = await response.json().catch(() => null);
+      console.log('Response:', response.status, responseData);
+
+      if (!response.ok) {
+        throw new Error(responseData?.error || responseData?.message || `Server error: ${response.status}`);
+      }
+
       setStep(4)
     } catch (error: any) {
-      const validationErrors = error.errors.reduce((acc: any, err: any) => {
-        acc[err.path[0]] = t(`errors.${err.path[0]}`)
-        return acc
-      }, {})
-      setErrors(validationErrors)
+      console.error('Submission error:', error);
+      console.error('Full error details:', {
+        message: error.message,
+        stack: error.stack,
+        response: error.response
+      });
+      
+      if (error.errors) {
+        const validationErrors = error.errors.reduce((acc: any, err: any) => {
+          acc[err.path[0]] = t(`errors.${err.path[0]}`)
+          return acc
+        }, {})
+        setErrors(validationErrors)
+      } else {
+        setErrors({ submit: error.message || 'Failed to submit consultation. Please try again.' })
+      }
     } finally {
       setIsSubmitting(false)
     }
@@ -133,13 +189,13 @@ export default function ConsultationModal({ isOpen, onClose }: { isOpen: boolean
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={onClose}
-          className="absolute top-6 right-6 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors duration-200 z-10"
-        >
+          className={`absolute top-6 ${locale === 'ar' ? 'left-6' : 'right-6'} p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors duration-200 z-10`}
+          >
           <X size={24} className="text-[#20284D]" />
         </motion.button>
 
-        <div className="relative w-full h-full bg-[#20284D]/95 rounded-[25px] md:rounded-[50px] p-6 md:p-12">
-          <motion.h3
+        <div className={`relative w-full h-full bg-[#20284D]/95 rounded-[25px] md:rounded-[50px] p-6 md:p-12 ${locale === 'ar' ? 'text-right' : 'text-left'}`}>
+        <motion.h3
             {...fadeIn}
             className="text-2xl md:text-3xl font-bold text-white mb-8 font-cairo"
           >
@@ -170,29 +226,28 @@ export default function ConsultationModal({ isOpen, onClose }: { isOpen: boolean
           </div>
 
           <div className="h-[calc(100%-200px)] overflow-y-auto custom-scrollbar px-4">
-            {step === 1 && (
-              <motion.div {...fadeIn} className="space-y-8">
-                <h2 className="text-2xl md:text-3xl font-bold text-white font-cairo">
-                  {t('steps.meetingType')}
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {meetingMethods.map((method) => (
-                    <motion.button
-                      key={method.value}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      onClick={() => handleChange('meetingMethod', method.value)}
-                      className={`h-[77px] rounded-[25px] font-semibold transition-all duration-300
-                        ${
-                          formData.meetingMethod === method.value
+          {step === 1 && (
+                <motion.div {...fadeIn} className="space-y-8">
+                  <h2 className="text-2xl md:text-3xl font-bold text-white font-cairo">
+                    {t('steps.meetingType')}
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {meetingMethods.map((method) => (
+                      <motion.button
+                        key={method.value}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        onClick={() => handleChange('meetingMethod', method.value)}
+                        className={`h-[77px] rounded-[25px] font-semibold transition-all duration-300
+                          ${formData.meetingMethod === method.value
                             ? 'bg-[#AA9554] text-white'
                             : 'bg-white text-[#20284D] hover:bg-[#AA9554] hover:text-white'
-                        }
-                        shadow-lg hover:shadow-xl`}
-                    >
-                      {t(`meetingMethods.${method.value}`)}
-                    </motion.button>
-                  ))}
+                          }
+                          shadow-lg hover:shadow-xl`}
+                      >
+                        {t(`meetingMethods.${method.value}`)}
+                      </motion.button>
+                    ))}
                 </div>
                 {errors.meetingMethod && (
                   <p className="text-red-400 text-sm mt-2">{errors.meetingMethod}</p>
@@ -242,8 +297,8 @@ export default function ConsultationModal({ isOpen, onClose }: { isOpen: boolean
                       placeholder={t('form.email')}
                       value={formData.email}
                       onChange={(e) => handleChange('email', e.target.value)}
-                      className="w-full p-4 rounded-2xl border-2 border-transparent focus:border-[#AA9554] text-right outline-none transition-all duration-300"
-                    />
+                      className={`w-full p-4 rounded-2xl border-2 border-transparent focus:border-[#AA9554] ${locale === 'ar' ? 'text-right' : 'text-left'} outline-none transition-all duration-300`}
+                      />
                     {errors.email && (
                       <p className="text-red-400 text-sm mt-2">{errors.email}</p>
                     )}
@@ -254,7 +309,7 @@ export default function ConsultationModal({ isOpen, onClose }: { isOpen: boolean
                       placeholder={t('form.phone')}
                       value={formData.phone}
                       onChange={(e) => handleChange('phone', e.target.value)}
-                      className="w-full p-4 rounded-2xl border-2 border-transparent focus:border-[#AA9554] text-right outline-none transition-all duration-300"
+                      className={`w-full p-4 rounded-2xl border-2 border-transparent focus:border-[#AA9554] ${locale === 'ar' ? 'text-right' : 'text-left'} outline-none transition-all duration-300`}
                     />
                     {errors.phone && (
                       <p className="text-red-400 text-sm mt-2">{errors.phone}</p>
@@ -294,7 +349,7 @@ export default function ConsultationModal({ isOpen, onClose }: { isOpen: boolean
                     whileTap={{ scale: 0.98 }}
                     onClick={handleSubmit}
                     disabled={isSubmitting}
-                    className="w-full py-4 bg-[#AA9554] text-white rounded-2xl hover:bg-[#8B7B45] transition-all duration-300 shadow-lg hover:shadow-xl font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full py-4 bg-[#AA9554] text-white rounded-2xl hover:bg-[#AA9554] transition-all duration-300 shadow-lg hover:shadow-xl font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? t('form.sending') : t('form.submit')}
                   </motion.button>
@@ -324,17 +379,17 @@ export default function ConsultationModal({ isOpen, onClose }: { isOpen: boolean
           </div>
 
           {step < 3 && (
-                 <motion.button
-                 whileHover={{ scale: 1.1 }}
-                 whileTap={{ scale: 0.9 }}
-                 onClick={handleNext}
-                 className="absolute bottom-8 right-8 md:bottom-12 md:right-12 w-[52px] h-[52px] 
-                   bg-[#AA9554] rounded-full flex items-center justify-center
-                   hover:bg-[#8B7B45] transition-all duration-300 shadow-lg hover:shadow-xl"
-               >
-                 <ArrowLeftRight size={24} className="text-white" />
-               </motion.button>
-             )}
+              <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              onClick={handleNext}
+              className={`absolute bottom-8 ${locale === 'ar' ? 'left-8' : 'right-8'} md:bottom-12 ${locale === 'ar' ? 'md:left-12' : 'md:right-12'} w-[52px] h-[52px] 
+                bg-[#AA9554] rounded-full flex items-center justify-center
+                hover:bg-[#AA9554] transition-all duration-300 shadow-lg hover:shadow-xl`}
+            >
+              <ArrowLeftRight size={24} className="text-white" />
+            </motion.button>
+          )}
            </div>
          </motion.div>
        </motion.div>
