@@ -74,7 +74,7 @@ export default function Contact() {
   }
 
   return (
-    <section className=" bg-white">
+    <section className=" bg-white pb-3">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-[40px] font-bold text-[#20284D] leading-[75px] mb-4">
