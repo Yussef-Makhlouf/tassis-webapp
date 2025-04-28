@@ -48,19 +48,19 @@ export default function Navbar() {
             <Image 
               src="/Group.png" 
               alt="Logo" 
-              width={140} 
-              height={121} 
-              className="object-contain w-auto h-[50px] sm:h-[60px] lg:h-[70px]"
+              width={180} 
+              height={150} 
+              className="object-contain w-auto h-[60px] sm:h-[70px] lg:h-[80px] xl:h-[90px]"
             />
           </Link>
 
-          <ul className={`hidden md:flex items-center gap-1 border border-[#AA9554] rounded-full px-2 py-2 lg:py-4 flex-wrap justify-center`} 
+          <ul className={`hidden md:flex items-center gap-2 lg:gap-3 border-2 border-[#AA9554] rounded-full px-4 py-3 lg:py-4 flex-wrap justify-center`} 
               dir={locale === 'ar' ? 'rtl' : 'ltr'}>
             {navItems.map((item) => (
               <li key={item.text} className="whitespace-nowrap">
                 <Link 
                   href={item.href}
-                  className={`text-base lg:text-lg font-medium px-3 lg:px-6 py-2 lg:py-3 rounded-full transition-all duration-300 ${
+                  className={`text-lg xl:text-xl font-semibold px-4 lg:px-6 py-2.5 lg:py-3 rounded-full transition-all duration-300 ${
                     item.active 
                       ? "bg-[#AA9554] text-[#20284D]" 
                       : "text-[#AA9554] hover:text-[#20284D] hover:bg-[#20284D]/5"
@@ -75,7 +75,7 @@ export default function Navbar() {
           <div className="flex items-center gap-2 sm:gap-3">
             <button 
               onClick={toggleLanguage}
-              className="border border-[#AA9554] text-[#AA9554] px-3 sm:px-4 py-1.5 sm:py-2 rounded-md text-sm font-medium hover:bg-[#AA9554] hover:text-white transition-all duration-300"
+              className="border-2 border-[#AA9554] text-[#AA9554] px-4 sm:px-5 py-2 sm:py-2.5 rounded-md text-base font-semibold hover:bg-[#AA9554] hover:text-white transition-all duration-300"
             >
               {locale === 'ar' ? 'EN' : 'عربي'}
             </button>
@@ -83,7 +83,7 @@ export default function Navbar() {
             {/* Mobile Menu Button - Enhanced */}
             <button 
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden flex items-center gap-2 border-2 border-[#AA9554] px-3 py-2 rounded-lg text-[#AA9554] hover:bg-[#AA9554] hover:text-white transition-all duration-300"
+              className="md:hidden flex items-center gap-2 border-2 border-[#AA9554] px-4 py-2.5 rounded-lg text-[#AA9554] hover:bg-[#AA9554] hover:text-white transition-all duration-300"
               aria-label="Toggle menu"
             >
               <span className="text-sm font-medium hidden sm:inline">القائمة</span>
