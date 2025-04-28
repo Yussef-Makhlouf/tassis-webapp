@@ -508,9 +508,14 @@ const ProjectPage = ({ params }: { params: { unitId: string } }) => {
                 <div className="w-full h-[2px] bg-[#AA9554] my-6 sm:my-8" />
 
                 <div className="text-center">
-                  <p className="text-[24px] sm:text-[28px] md:text-[30px] font-bold text-[#20284D] leading-tight">
-                    {t('price')}: {unit.price} {t('currency')}
-                  </p>
+                  <div className="text-center">
+                    <p className="text-[24px] sm:text-[28px] md:text-[30px] font-bold text-[#20284D] leading-tight mb-2">
+                      {t('price')}: {unit.price} {t('currency')}
+                    </p>
+                    <span className="text-[16px] text-[#666] italic">
+                      (غير شامل الضريبة)
+                    </span>
+                  </div>
                 </div>
               </div>
 

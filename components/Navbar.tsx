@@ -48,8 +48,8 @@ export default function Navbar() {
             <Image 
               src="/Group.png" 
               alt="Logo" 
-              width={130} 
-              height={101} 
+              width={140} 
+              height={121} 
               className="object-contain w-auto h-[50px] sm:h-[60px] lg:h-[70px]"
             />
           </Link>
@@ -62,8 +62,8 @@ export default function Navbar() {
                   href={item.href}
                   className={`text-base lg:text-lg font-medium px-3 lg:px-6 py-2 lg:py-3 rounded-full transition-all duration-300 ${
                     item.active 
-                      ? "bg-[#20284D] text-[#AA9554]" 
-                      : "text-[#20284D] hover:text-[#AA9554] hover:bg-[#20284D]/5"
+                      ? "bg-[#AA9554] text-[#20284D]" 
+                      : "text-[#AA9554] hover:text-[#20284D] hover:bg-[#20284D]/5"
                   }`}
                 >
                   {item.text}

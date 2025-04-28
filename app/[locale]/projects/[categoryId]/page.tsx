@@ -452,6 +452,7 @@ export default function ProjectDetails() {
                       <span className="text-[#20284D] text-[24px] font-bold">{unit.price}</span>
                       <span className="text-[#20284D] text-[16px]">{t('currency')}</span>
                     </div>
+                    
                     <Link
                       href={`projects/${unit._id}`}
                       className="flex-1 py-4 border-2 border-[#AA9554] text-[#AA9554] font-bold text-[20px] rounded-xl hover:bg-[#AA9554] hover:text-white transition-colors duration-300 text-center"
@@ -460,6 +461,8 @@ export default function ProjectDetails() {
                     </Link>
                   </div>
                 </div>
+                <div className="text-[#20284D] text-[14px] italic bg-gray-100 px-2 py-1 rounded-md ml-2">* غير شامل الضريبة</div>
+
               </div>
 
             ))}
